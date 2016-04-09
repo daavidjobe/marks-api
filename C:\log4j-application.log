@@ -1,0 +1,6 @@
+2016-04-09 18:21:35 INFO  Main:13 - Testing logger info 123
+2016-04-09 18:21:35 WARN  Main:14 - Testing logger warn 123
+2016-04-09 18:21:35 DEBUG Main:15 - Testing logger debug 123
+2016-04-09 18:21:35 ERROR Main:16 - Testing logger error 123
+2016-04-09 18:21:35 FATAL Main:17 - Testing logger fatal 123
+2016-04-09 18:25:54 INFO  Main:13 - sending message to client: marks
