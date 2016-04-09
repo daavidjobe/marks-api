@@ -4,3 +4,11 @@
 2016-04-09 18:21:35 ERROR Main:16 - Testing logger error 123
 2016-04-09 18:21:35 FATAL Main:17 - Testing logger fatal 123
 2016-04-09 18:25:54 INFO  Main:13 - sending message to client: marks
+2016-04-09 18:36:49 INFO  StoreTest:20 - com.mongodb.MongoDatabaseImpl@4d50efb8
+2016-04-09 18:38:08 INFO  StoreTest:20 - database name: test-db
+2016-04-09 18:40:56 INFO  StoreTest:19 - database name: test-db
+2016-04-09 18:42:14 INFO  StoreTest:20 - database name: test-db
+2016-04-09 18:50:11 INFO  StoreTest:29 - database name: test-db
+2016-04-09 19:02:23 INFO  Main:17 - sending message to client: DB: marksDB
+2016-04-09 19:02:28 INFO  Main:17 - sending message to client: DB: marksDB
+2016-04-09 19:03:01 INFO  Main:17 - sending message to client: DB: marksDB
