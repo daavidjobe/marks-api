@@ -6,16 +6,15 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mongodb.morphia.Key;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 public class StoreTest {
 
-    Store store;
+    Store store = Store.getInstanceWithDBName("marksDB-test");
 
     @Before
     public void setUp() throws Exception {
-        store = new Store();
-        store.createDatastore("marksDB-test");
+
     }
 
     @After
@@ -30,4 +29,5 @@ public class StoreTest {
         Key<User> saved = store.getDatastore().save(user);
         assertNotNull(saved);
     }
+
 }

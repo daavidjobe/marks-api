@@ -8,12 +8,33 @@ public class Store {
 
     private Morphia morphia = new Morphia();
     private Datastore datastore = null;
+    private static Store store = null;
 
-    public Store() {
+    private Store() {
         morphia.mapPackage("com.marks.model");
+        datastore = createDatastore("marksDB");
     }
 
-    public Datastore createDatastore(String dbName) {
+    private Store(String dbName) {
+        morphia.mapPackage("com.marks.model");
+        datastore = createDatastore(dbName);
+    }
+
+    public static synchronized Store getInstance() {
+        if(store == null) {
+            store = new Store();
+        }
+        return store;
+    }
+
+    public static Store getInstanceWithDBName(String dbName) {
+        if(store == null) {
+            store = new Store(dbName);
+        }
+        return store;
+    }
+
+    private Datastore createDatastore(String dbName) {
         datastore = morphia.createDatastore(new MongoClient(), dbName);
         datastore.ensureIndexes();
         return datastore;
