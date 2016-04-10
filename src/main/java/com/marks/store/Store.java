@@ -1,25 +1,27 @@
 package com.marks.store;
 
 import com.mongodb.MongoClient;
-import com.mongodb.client.MongoDatabase;
+import org.mongodb.morphia.Datastore;
+import org.mongodb.morphia.Morphia;
 
 public class Store {
 
-    private MongoClient mongoClient;
-    private MongoDatabase dataBase;
+    private Morphia morphia = new Morphia();
+    private Datastore datastore = null;
 
-    public Store(String dbName) {
-        if(mongoClient == null) {
-            mongoClient = new MongoClient("localhost" , 27017);
-            dataBase = mongoClient.getDatabase(dbName);
-        }
+    public Store() {
+        morphia.mapPackage("com.marks.model");
     }
 
-    public MongoDatabase getDatabase() {
-        return dataBase;
+    public Datastore createDatastore(String dbName) {
+        datastore = morphia.createDatastore(new MongoClient(), dbName);
+        datastore.ensureIndexes();
+        return datastore;
     }
 
-    public void terminate() {
-        mongoClient.close();
+    public Datastore getDatastore() {
+        return datastore;
     }
+
+
 }

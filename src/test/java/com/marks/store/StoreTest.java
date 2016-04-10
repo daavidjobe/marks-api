@@ -1,45 +1,33 @@
 package com.marks.store;
 
-import com.mongodb.client.MongoCollection;
-import org.bson.Document;
+import com.marks.model.User;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.mongodb.morphia.Key;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class StoreTest {
 
     Store store;
 
     @Before
-    public void setUp() {
-        store = new Store("marksDB-test");
+    public void setUp() throws Exception {
+        store = new Store();
+        store.createDatastore("marksDB-test");
     }
 
     @After
-    public void cleanUp() {
-        store.getDatabase().drop();
-        store.terminate();
+    public void tearDown() throws Exception {
+        store.getDatastore().getDB().dropDatabase();
     }
 
     @Test
-    public void shouldReturnCorrectDatabaseName() throws Exception {
-        assertEquals("marksDB-test", store.getDatabase().getName());
+    public void shouldSaveNewUserToCollection() throws Exception {
+        User user = new User();
+        user.setEmail("test@test.com");
+        Key<User> saved = store.getDatastore().save(user);
+        assertNotNull(saved);
     }
-
-    @Test
-    public void shouldInsertDocument() throws Exception {
-        MongoCollection<Document> collection = store.getDatabase().getCollection("test");
-        Document doc = new Document("name", "MongoDB")
-                .append("type", "database")
-                .append("count", 1)
-                .append("info", new Document("x", 203).append("y", 102));
-        collection.insertOne(doc);
-        assertEquals(collection.count(), 1);
-    }
-
-
-
-
 }
