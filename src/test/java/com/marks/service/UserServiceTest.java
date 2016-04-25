@@ -1,6 +1,5 @@
 package com.marks.service;
 
-import com.marks.model.Mark;
 import com.marks.model.User;
 import com.marks.store.Store;
 import com.marks.util.Config;
@@ -13,7 +12,6 @@ import org.mongodb.morphia.VerboseJSR303ConstraintViolationException;
 
 import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
 
 
 public class UserServiceTest {
@@ -31,6 +29,15 @@ public class UserServiceTest {
     @After
     public void tearDown() throws Exception {
         store.getDB().dropDatabase();
+    }
+
+    @Test
+    public void gettingUserByEmail() throws Exception {
+        User user = new User();
+        user.setEmail("test@test.com");
+        assertNull(userService.getUserByEmail("test@test.com"));
+        store.save(user);
+        assertNotNull(userService.getUserByEmail("test@test.com"));
     }
 
     @Test
@@ -58,34 +65,6 @@ public class UserServiceTest {
         User user = new User();
         user.setEmail("test@");
         userService.add(user);
-
-    }
-
-    @Test
-    public void userShouldBeUpdated() throws Exception {
-        User user = new User();
-        user.setEmail("test@test.com");
-        userService.add(user);
-        user.setFirstName("tester");
-        assertTrue(user.getVersion() == 1);
-        Key<User> updated = userService.update(user);
-        User saved = store.getByKey(User.class, updated);
-        assertTrue(saved.getVersion() == 2);
-    }
-
-    @Test
-    public void newMarkShouldBeAdded() throws Exception {
-        User user = new User();
-        user.setEmail("test@test.com");
-        userService.add(user);
-        Mark mark = new Mark();
-        mark.setUrl("http://google.com");
-        user.getMarks().add(mark);
-        Key<User> updated = userService.update(user);
-        User stored = store.getByKey(User.class, updated);
-        System.out.println(stored);
-        assertTrue(stored.getMarks().size() == 1);
-
     }
 
 }

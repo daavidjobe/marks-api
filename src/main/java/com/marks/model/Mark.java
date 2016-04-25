@@ -19,8 +19,10 @@ public class Mark extends BaseEntity {
     @NotEmpty
     @URL
     private String url;
+    private String owner;
 
     private boolean published = false;
+
 
     private int popularityLevel = 1;
 
@@ -31,6 +33,14 @@ public class Mark extends BaseEntity {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 
     public int getPopularityLevel() {
@@ -48,6 +58,8 @@ public class Mark extends BaseEntity {
     public void setPublished(boolean published) {
         this.published = published;
     }
+
+
 
     @Override
     public String toString() {

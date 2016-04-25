@@ -6,7 +6,6 @@ import com.marks.store.Store;
 import org.apache.log4j.Logger;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Key;
-import org.mongodb.morphia.query.Query;
 
 import java.util.List;
 
@@ -22,9 +21,8 @@ public class UserService {
                 .asList();
     }
 
-    public User getUserByField(String field) {
-        User user = store.find(User.class).filter(field + " =", field).get();
-        return user != null ? user : null;
+    public User getUserByEmail(String email) {
+        return store.find(User.class).filter("email =", email).get();
     }
 
     public Key<User> add(User user) {
@@ -33,12 +31,6 @@ public class UserService {
         } else {
             return null;
         }
-    }
-
-    public Key<User> update(User user) {
-        Query<User> query = store.createQuery(User.class).filter("email =", user.getEmail());
-        User storedUser = query.get();
-        return storedUser != null ? store.save(user) : null;
     }
 
 }

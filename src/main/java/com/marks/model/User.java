@@ -19,9 +19,6 @@ public class User extends BaseEntity {
     @Indexed(options = @IndexOptions(name = "userEmail", unique = true))
     private String email;
 
-    private String firstName;
-    private String lastName;
-
     @Embedded
     @Valid
     private List<Mark> marks = new ArrayList<>();
@@ -34,21 +31,7 @@ public class User extends BaseEntity {
         this.email = email;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+    private String username;
 
     public List<Mark> getMarks() {
         return marks;
@@ -58,12 +41,19 @@ public class User extends BaseEntity {
         this.marks = marks;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "email='" + email + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                ", username='" + username + '\'' +
                 ", marks=" + marks +
                 '}';
     }
