@@ -87,7 +87,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>Main</mainClass>
+                            <mainClass>com.marks.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

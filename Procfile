@@ -1,1 +1,1 @@
-web: java -jar ./target/marks-1.0-SNAPHSHOT-jar-with-dependencies.jar
+web: java $JAVA_OPTS -jar ./target/marks-1.0-SNAPSHOT-jar-with-dependencies.jar --port $PORT
