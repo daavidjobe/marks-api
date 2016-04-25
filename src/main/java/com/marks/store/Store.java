@@ -3,6 +3,7 @@ package com.marks.store;
 import com.marks.model.Mark;
 import com.marks.model.User;
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
 import org.apache.log4j.Logger;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
@@ -24,7 +25,14 @@ public class Store {
 
     private Store() {
         morphia.map(User.class, Mark.class);
-        datastore = morphia.createDatastore(new MongoClient(), DB_NAME);
+        MongoClient client;
+        String connectionUri = System.getenv("MONGODB_URI");
+        if(connectionUri != null) {
+            client = new MongoClient(new MongoClientURI(connectionUri));
+        } else {
+            client = new MongoClient();
+        }
+        datastore = morphia.createDatastore(client, DB_NAME);
         datastore.ensureIndexes();
         new ValidationExtension(morphia);
         logger.info("new Store created " + DB_NAME);
