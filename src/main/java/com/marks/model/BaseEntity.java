@@ -2,18 +2,27 @@ package com.marks.model;
 
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Id;
-import org.mongodb.morphia.annotations.Property;
+import org.mongodb.morphia.annotations.PrePersist;
 import org.mongodb.morphia.annotations.Version;
+
+import java.util.Date;
 
 public abstract class BaseEntity {
 
     @Id
-    @Property("id")
     protected ObjectId id;
 
     @Version
-    @Property("version")
     private Long version;
+
+    protected Date creationDate;
+    protected Date lastChange;
+
+    @PrePersist
+    public void prePersist() {
+        creationDate = (creationDate == null) ? new Date() : creationDate;
+        lastChange = (lastChange == null) ? creationDate : new Date();
+    }
 
     public BaseEntity() {
         super();

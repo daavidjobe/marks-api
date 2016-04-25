@@ -35,3 +35,555 @@
 2016-04-10 16:03:54 INFO  UserController:31 - saved: Key{collection=users, id=570a5d4a4aa8ec108df4ab25}
 2016-04-10 16:07:57 INFO  UserController:32 - new: User{email='test4@test.com'}
 2016-04-10 16:07:57 INFO  UserController:34 - saved: Key{collection=users, id=570a5e3d4aa8ec109e958533}
+2016-04-10 17:26:22 INFO  ApiClient:28 - requesting url: http://localhost:4568/users/findAll
+2016-04-10 17:28:21 INFO  ApiClient:28 - requesting url: http://localhost:4568/users/findAll
+2016-04-10 17:29:18 INFO  ApiClient:28 - requesting url: http://localhost:4567/users/findAll
+2016-04-10 17:30:58 INFO  ApiClient:28 - requesting url: http://localhost:4567/users/findAll
+2016-04-10 17:31:42 INFO  ApiClient:28 - requesting url: http://localhost:4567/users/findAll
+2016-04-10 17:32:39 INFO  ApiClient:28 - requesting url: http://localhost:4567/users/findAll
+2016-04-10 17:33:06 INFO  ApiClient:28 - requesting url: http://localhost:4567/users/findAll
+2016-04-10 17:33:40 INFO  ApiClient:28 - requesting url: http://localhost:4567/users/findAll
+2016-04-10 17:39:57 INFO  Main:17 - starting with custom settings
+2016-04-10 17:39:58 INFO  ApiClient:28 - requesting url: http://localhost:4567/users/findAll
+2016-04-10 17:41:20 INFO  Main:17 - starting with custom settings
+2016-04-10 17:41:20 INFO  ApiClient:28 - requesting url: http://localhost:4567/
+2016-04-10 17:41:48 INFO  Main:17 - starting with custom settings
+2016-04-10 17:41:48 INFO  ApiClient:28 - requesting url: http://localhost:4567/
+2016-04-10 17:42:02 INFO  Main:17 - starting with custom settings
+2016-04-10 17:42:03 INFO  ApiClient:28 - requesting url: http://localhost:4567/
+2016-04-10 17:43:11 INFO  Main:17 - starting with custom settings
+2016-04-10 17:43:11 INFO  ApiClient:28 - requesting url: http://localhost:4567/users/findAll
+2016-04-10 17:43:35 INFO  ApiClient:28 - requesting url: http://localhost:4567/users/findAll
+2016-04-10 17:44:36 INFO  Main:17 - starting with custom settings
+2016-04-10 17:44:36 INFO  ApiClient:28 - requesting url: http://localhost:4567/users/findAll
+2016-04-10 17:45:04 INFO  Main:17 - starting with custom settings
+2016-04-10 17:45:05 INFO  ApiClient:28 - requesting url: http://localhost:4567/users/findAll
+2016-04-10 17:46:42 INFO  Main:17 - starting with custom settings
+2016-04-10 17:46:42 INFO  ApiClient:28 - requesting url: http://localhost:4567/users/findAll
+2016-04-10 17:47:17 INFO  Main:17 - starting with custom settings
+2016-04-10 17:47:17 INFO  ApiClient:28 - requesting url: http://localhost:4567/users/findAll
+2016-04-10 17:50:21 INFO  Main:17 - starting with custom settings
+2016-04-10 17:50:21 INFO  ApiClient:28 - requesting url: http://localhost:4567/users/findAll
+2016-04-10 17:51:02 INFO  Main:17 - starting with custom settings
+2016-04-10 17:51:02 INFO  ApiClient:28 - requesting url: http://localhost:4567/users/findAll
+2016-04-10 17:51:21 INFO  Main:17 - starting with custom settings
+2016-04-10 17:51:22 INFO  ApiClient:28 - requesting url: http://localhost:4567/users/findAll
+2016-04-10 18:04:52 INFO  Main:18 - starting with custom settings
+2016-04-10 18:04:53 INFO  ApiClient:28 - requesting url: http://localhost:4567/users/findAll
+2016-04-10 18:05:19 INFO  UserController:25 - fetching all users
+2016-04-10 19:26:50 INFO  UserService:25 - new: User{email='test1234@test.com'}
+2016-04-10 19:27:29 INFO  UserService:25 - new: User{email='test1234@test.com'}
+2016-04-10 19:28:23 INFO  UserService:25 - new: User{email='test123@test.com'}
+2016-04-10 19:28:23 INFO  UserService:25 - new: User{email='null'}
+2016-04-10 19:28:23 INFO  UserService:25 - new: User{email='test@test.com'}
+2016-04-10 19:29:17 INFO  UserService:25 - new: User{email='test@test.com'}
+2016-04-10 19:29:17 INFO  UserService:25 - new: User{email='null'}
+2016-04-10 19:29:17 INFO  UserService:25 - new: User{email='test@test.com'}
+2016-04-10 19:29:56 INFO  UserService:25 - new: User{email='test@test.com'}
+2016-04-10 19:29:56 INFO  UserService:25 - new: User{email='test@test.com'}
+2016-04-10 19:29:56 INFO  UserService:25 - new: User{email='test@test.com'}
+2016-04-10 19:31:29 INFO  UserService:25 - new: User{email='test@test.com'}
+2016-04-10 19:31:29 INFO  UserService:25 - new: User{email='test@test.com'}
+2016-04-10 19:31:29 INFO  UserService:25 - new: User{email='test@test.com'}
+2016-04-10 19:32:46 INFO  UserService:25 - new: User{email='test@test.com'}
+2016-04-10 19:32:46 ERROR UserService:27 - user already exists
+com.mongodb.DuplicateKeyException: Write failed with error code 11000 and error message 'E11000 duplicate key error index: marksDB.users.$email_1 dup key: { : "test@test.com" }'
+	at com.mongodb.operation.BaseWriteOperation.convertBulkWriteException(BaseWriteOperation.java:236)
+	at com.mongodb.operation.BaseWriteOperation.access$300(BaseWriteOperation.java:60)
+	at com.mongodb.operation.BaseWriteOperation$1.call(BaseWriteOperation.java:146)
+	at com.mongodb.operation.BaseWriteOperation$1.call(BaseWriteOperation.java:133)
+	at com.mongodb.operation.OperationHelper.withConnectionSource(OperationHelper.java:230)
+	at com.mongodb.operation.OperationHelper.withConnection(OperationHelper.java:221)
+	at com.mongodb.operation.BaseWriteOperation.execute(BaseWriteOperation.java:133)
+	at com.mongodb.operation.BaseWriteOperation.execute(BaseWriteOperation.java:60)
+	at com.mongodb.Mongo.execute(Mongo.java:781)
+	at com.mongodb.Mongo$2.execute(Mongo.java:764)
+	at com.mongodb.DBCollection.executeWriteOperation(DBCollection.java:333)
+	at com.mongodb.DBCollection.insert(DBCollection.java:328)
+	at com.mongodb.DBCollection.insert(DBCollection.java:319)
+	at com.mongodb.DBCollection.insert(DBCollection.java:289)
+	at com.mongodb.DBCollection.insert(DBCollection.java:255)
+	at com.mongodb.DBCollection.insert(DBCollection.java:177)
+	at com.mongodb.DBCollection.save(DBCollection.java:398)
+	at org.mongodb.morphia.DatastoreImpl.tryVersionedUpdate(DatastoreImpl.java:1256)
+	at org.mongodb.morphia.DatastoreImpl.save(DatastoreImpl.java:1203)
+	at org.mongodb.morphia.DatastoreImpl.save(DatastoreImpl.java:692)
+	at org.mongodb.morphia.DatastoreImpl.save(DatastoreImpl.java:686)
+	at com.marks.service.UserService.add(UserService.java:24)
+	at com.marks.service.UserServiceTest.sameUserShouldNotBeCreatedAgain(UserServiceTest.java:44)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.ExpectException.evaluate(ExpectException.java:19)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:119)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:42)
+	at com.intellij.rt.execution.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:234)
+	at com.intellij.rt.execution.junit.JUnitStarter.main(JUnitStarter.java:74)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:144)
+2016-04-10 19:33:27 INFO  UserService:25 - new: User{email='test@test.com'}
+2016-04-10 19:33:27 ERROR UserService:27 - user already exists
+com.mongodb.DuplicateKeyException: Write failed with error code 11000 and error message 'E11000 duplicate key error index: marksDB.users.$email_1 dup key: { : "test@test.com" }'
+	at com.mongodb.operation.BaseWriteOperation.convertBulkWriteException(BaseWriteOperation.java:236)
+	at com.mongodb.operation.BaseWriteOperation.access$300(BaseWriteOperation.java:60)
+	at com.mongodb.operation.BaseWriteOperation$1.call(BaseWriteOperation.java:146)
+	at com.mongodb.operation.BaseWriteOperation$1.call(BaseWriteOperation.java:133)
+	at com.mongodb.operation.OperationHelper.withConnectionSource(OperationHelper.java:230)
+	at com.mongodb.operation.OperationHelper.withConnection(OperationHelper.java:221)
+	at com.mongodb.operation.BaseWriteOperation.execute(BaseWriteOperation.java:133)
+	at com.mongodb.operation.BaseWriteOperation.execute(BaseWriteOperation.java:60)
+	at com.mongodb.Mongo.execute(Mongo.java:781)
+	at com.mongodb.Mongo$2.execute(Mongo.java:764)
+	at com.mongodb.DBCollection.executeWriteOperation(DBCollection.java:333)
+	at com.mongodb.DBCollection.insert(DBCollection.java:328)
+	at com.mongodb.DBCollection.insert(DBCollection.java:319)
+	at com.mongodb.DBCollection.insert(DBCollection.java:289)
+	at com.mongodb.DBCollection.insert(DBCollection.java:255)
+	at com.mongodb.DBCollection.insert(DBCollection.java:177)
+	at com.mongodb.DBCollection.save(DBCollection.java:398)
+	at org.mongodb.morphia.DatastoreImpl.tryVersionedUpdate(DatastoreImpl.java:1256)
+	at org.mongodb.morphia.DatastoreImpl.save(DatastoreImpl.java:1203)
+	at org.mongodb.morphia.DatastoreImpl.save(DatastoreImpl.java:692)
+	at org.mongodb.morphia.DatastoreImpl.save(DatastoreImpl.java:686)
+	at com.marks.service.UserService.add(UserService.java:24)
+	at com.marks.service.UserServiceTest.sameUserShouldNotBeCreatedAgain(UserServiceTest.java:44)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.ExpectException.evaluate(ExpectException.java:19)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:119)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:42)
+	at com.intellij.rt.execution.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:234)
+	at com.intellij.rt.execution.junit.JUnitStarter.main(JUnitStarter.java:74)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:144)
+2016-04-10 19:33:46 INFO  UserService:25 - new: User{email='test@test.com'}
+2016-04-10 19:34:38 INFO  UserService:25 - new: User{email='test@test.com'}
+2016-04-10 19:36:43 INFO  UserService:25 - new: User{email='test1@test.com'}
+2016-04-10 19:37:52 INFO  UserService:25 - new: User{email='test1@test.com'}
+2016-04-10 19:37:52 ERROR UserService:27 - user already exists
+com.mongodb.DuplicateKeyException: Write failed with error code 11000 and error message 'E11000 duplicate key error index: marksDB.users.$email_1 dup key: { : "test1@test.com" }'
+	at com.mongodb.operation.BaseWriteOperation.convertBulkWriteException(BaseWriteOperation.java:236)
+	at com.mongodb.operation.BaseWriteOperation.access$300(BaseWriteOperation.java:60)
+	at com.mongodb.operation.BaseWriteOperation$1.call(BaseWriteOperation.java:146)
+	at com.mongodb.operation.BaseWriteOperation$1.call(BaseWriteOperation.java:133)
+	at com.mongodb.operation.OperationHelper.withConnectionSource(OperationHelper.java:230)
+	at com.mongodb.operation.OperationHelper.withConnection(OperationHelper.java:221)
+	at com.mongodb.operation.BaseWriteOperation.execute(BaseWriteOperation.java:133)
+	at com.mongodb.operation.BaseWriteOperation.execute(BaseWriteOperation.java:60)
+	at com.mongodb.Mongo.execute(Mongo.java:781)
+	at com.mongodb.Mongo$2.execute(Mongo.java:764)
+	at com.mongodb.DBCollection.executeWriteOperation(DBCollection.java:333)
+	at com.mongodb.DBCollection.insert(DBCollection.java:328)
+	at com.mongodb.DBCollection.insert(DBCollection.java:319)
+	at com.mongodb.DBCollection.insert(DBCollection.java:289)
+	at com.mongodb.DBCollection.insert(DBCollection.java:255)
+	at com.mongodb.DBCollection.insert(DBCollection.java:177)
+	at com.mongodb.DBCollection.save(DBCollection.java:398)
+	at org.mongodb.morphia.DatastoreImpl.tryVersionedUpdate(DatastoreImpl.java:1256)
+	at org.mongodb.morphia.DatastoreImpl.save(DatastoreImpl.java:1203)
+	at org.mongodb.morphia.DatastoreImpl.save(DatastoreImpl.java:692)
+	at org.mongodb.morphia.DatastoreImpl.save(DatastoreImpl.java:686)
+	at com.marks.service.UserService.add(UserService.java:24)
+	at com.marks.service.UserServiceTest.duplicateEmailShouldNotBeAccepted(UserServiceTest.java:44)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:119)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:42)
+	at com.intellij.rt.execution.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:234)
+	at com.intellij.rt.execution.junit.JUnitStarter.main(JUnitStarter.java:74)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:144)
+2016-04-10 19:38:25 INFO  UserService:25 - new: User{email='test1@test.com'}
+2016-04-10 19:38:25 INFO  UserService:25 - new: User{email='test1@test.com'}
+2016-04-10 19:38:25 INFO  UserService:25 - new: User{email='test@test.com'}
+2016-04-10 19:39:00 INFO  UserService:25 - new: User{email='test1@test.com'}
+2016-04-10 19:39:00 INFO  UserService:25 - new: User{email='test1@test.com'}
+2016-04-10 19:39:00 INFO  UserService:25 - new: User{email='test@test.com'}
+2016-04-10 19:39:22 INFO  UserService:25 - new: User{email='test1@test.com'}
+2016-04-10 19:39:22 INFO  UserService:25 - new: User{email='test1@test.com'}
+2016-04-10 19:39:22 INFO  UserService:25 - new: User{email='test@test.com'}
+2016-04-10 19:39:40 INFO  UserService:25 - new: User{email='test1@test.com'}
+2016-04-10 19:39:40 INFO  UserService:25 - new: User{email='test1@test.com'}
+2016-04-10 19:39:40 INFO  UserService:25 - new: User{email='test@test.com'}
+2016-04-10 19:39:57 INFO  UserService:25 - new: User{email='test1@test.com'}
+2016-04-10 19:39:57 INFO  UserService:25 - new: User{email='test1@test.com'}
+2016-04-10 19:39:57 INFO  UserService:25 - new: User{email='test@test.com'}
+2016-04-10 19:41:16 INFO  UserService:25 - new: User{email='test1@test.com'}
+2016-04-10 19:41:16 INFO  UserService:25 - new: User{email='test1@test.com'}
+2016-04-10 19:41:16 INFO  UserService:25 - new: User{email='test@test.com'}
+2016-04-10 19:42:07 INFO  UserService:25 - new: User{email='test@test.com'}
+2016-04-10 19:43:14 INFO  UserService:25 - new: User{email='test@test.com'}
+2016-04-10 19:43:31 INFO  UserService:25 - new: User{email='test@test.com'}
+2016-04-10 19:44:13 INFO  UserService:25 - new: User{email='test@test.com'}
+2016-04-10 19:45:33 INFO  UserService:25 - new: User{email='test@test.com'}
+2016-04-25 11:36:15 INFO  Store:20 - initialized DB: marksDB-test
+2016-04-25 11:36:17 INFO  Store:20 - initialized DB: marksDB-test
+2016-04-25 11:36:18 INFO  UserService:25 - new: User{email='test@test.com'}
+2016-04-25 11:39:12 INFO  Store:20 - initialized DB: marksDB-test
+2016-04-25 11:39:14 INFO  Store:20 - initialized DB: marksDB-test
+2016-04-25 11:39:14 INFO  UserService:25 - new: User{email='test@test.com'}
+2016-04-25 11:39:14 INFO  Store:20 - initialized DB: marksDB-test
+2016-04-25 11:39:15 INFO  UserService:25 - new: User{email='test@test.com'}
+2016-04-25 11:39:15 INFO  UserService:25 - new: User{email='test@test.com'}
+2016-04-25 11:39:52 INFO  Store:20 - initialized DB: marksDB-test
+2016-04-25 11:39:53 INFO  Store:20 - initialized DB: marksDB-test
+2016-04-25 11:39:54 INFO  UserService:25 - new: User{email='test@test.com'}
+2016-04-25 11:39:54 INFO  Store:20 - initialized DB: marksDB-test
+2016-04-25 11:39:55 INFO  UserService:25 - new: User{email='test@test.com'}
+2016-04-25 11:39:55 INFO  UserService:25 - new: User{email='test@test.com'}
+2016-04-25 11:46:17 INFO  Store:21 - initialized DB: marksDB-test
+2016-04-25 11:46:17 INFO  Store:21 - initialized DB: marksDB-test
+2016-04-25 11:46:17 INFO  Store:21 - initialized DB: marksDB-test
+2016-04-25 11:46:45 INFO  Store:20 - initialized DB: marksDB-test
+2016-04-25 11:46:46 INFO  Store:20 - initialized DB: marksDB-test
+2016-04-25 11:46:46 INFO  Store:20 - initialized DB: marksDB-test
+2016-04-25 11:47:17 INFO  Store:20 - initialized DB: marksDB-test
+2016-04-25 11:47:18 INFO  Store:20 - initialized DB: marksDB-test
+2016-04-25 11:47:19 INFO  UserService:25 - new: User{email='test@test.com'}
+2016-04-25 11:47:19 INFO  Store:20 - initialized DB: marksDB-test
+2016-04-25 11:47:19 INFO  UserService:25 - new: User{email='test@test.com'}
+2016-04-25 11:47:19 INFO  UserService:25 - new: User{email='test@test.com'}
+2016-04-25 11:55:32 INFO  Store:20 - initialized DB: marksDB-test
+2016-04-25 11:55:33 INFO  Store:20 - initialized DB: marksDB-test
+2016-04-25 11:55:33 INFO  Store:20 - initialized DB: marksDB-test
+2016-04-25 11:56:23 INFO  Store:20 - initialized DB: marksDB-test
+2016-04-25 11:56:24 INFO  Store:20 - initialized DB: marksDB-test
+2016-04-25 11:56:25 INFO  Store:20 - initialized DB: marksDB-test
+2016-04-25 11:56:50 INFO  Store:20 - initialized DB: marksDB-test
+2016-04-25 11:56:51 INFO  Store:20 - initialized DB: marksDB-test
+2016-04-25 11:56:52 INFO  Store:20 - initialized DB: marksDB-test
+2016-04-25 12:00:28 INFO  Store:20 - initialized DB: marksDB-test
+2016-04-25 12:00:29 INFO  Store:20 - initialized DB: marksDB-test
+2016-04-25 12:00:29 INFO  Store:20 - initialized DB: marksDB-test
+2016-04-25 12:03:36 INFO  Store:20 - initialized DB: marksDB-test
+2016-04-25 12:03:37 INFO  Store:20 - initialized DB: marksDB-test
+2016-04-25 12:03:38 INFO  Store:20 - initialized DB: marksDB-test
+2016-04-25 12:05:29 INFO  Store:20 - initialized DB: marksDB-test
+2016-04-25 12:05:30 INFO  Store:20 - initialized DB: marksDB-test
+2016-04-25 12:05:31 INFO  Store:20 - initialized DB: marksDB-test
+2016-04-25 12:06:32 INFO  Store:20 - initialized DB: marksDB-test
+2016-04-25 12:06:33 INFO  Store:20 - initialized DB: marksDB-test
+2016-04-25 12:06:34 INFO  Store:20 - initialized DB: marksDB-test
+2016-04-25 12:10:13 INFO  Store:21 - initialized DB: marksDB-test
+2016-04-25 12:10:14 INFO  Store:21 - initialized DB: marksDB-test
+2016-04-25 12:10:15 INFO  Store:21 - initialized DB: marksDB-test
+2016-04-25 12:10:43 INFO  Store:21 - initialized DB: marksDB-test
+2016-04-25 12:10:44 INFO  Store:21 - initialized DB: marksDB-test
+2016-04-25 12:10:44 INFO  Store:21 - initialized DB: marksDB-test
+2016-04-25 12:11:55 INFO  Store:21 - initialized DB: marksDB-test
+2016-04-25 12:11:56 INFO  Store:21 - initialized DB: marksDB-test
+2016-04-25 12:11:56 INFO  Store:21 - initialized DB: marksDB-test
+2016-04-25 12:17:30 INFO  Store:21 - initialized DB: marksDB-test
+2016-04-25 12:17:31 INFO  Store:21 - initialized DB: marksDB-test
+2016-04-25 12:17:31 INFO  Store:21 - initialized DB: marksDB-test
+2016-04-25 12:17:53 INFO  Store:21 - initialized DB: marksDB-test
+2016-04-25 12:17:54 INFO  Store:21 - initialized DB: marksDB-test
+2016-04-25 12:17:54 INFO  Store:21 - initialized DB: marksDB-test
+2016-04-25 12:18:30 INFO  Store:21 - initialized DB: marksDB-test
+2016-04-25 12:18:30 INFO  Store:21 - initialized DB: marksDB-test
+2016-04-25 12:18:30 INFO  Store:21 - initialized DB: marksDB-test
+2016-04-25 12:19:23 INFO  Store:21 - initialized DB: marksDB-test
+2016-04-25 12:19:24 INFO  Store:21 - initialized DB: marksDB-test
+2016-04-25 12:19:25 INFO  Store:21 - initialized DB: marksDB-test
+2016-04-25 12:20:20 INFO  Store:21 - initialized DB: marksDB-test
+2016-04-25 12:20:21 INFO  Store:21 - initialized DB: marksDB-test
+2016-04-25 12:20:22 INFO  Store:21 - initialized DB: marksDB-test
+2016-04-25 12:27:07 INFO  Store:21 - initialized DB: marksDB-test
+2016-04-25 12:27:08 INFO  Store:21 - initialized DB: marksDB-test
+2016-04-25 12:27:09 INFO  Store:21 - initialized DB: marksDB-test
+2016-04-25 12:28:10 INFO  Store:27 - new Store created marksDB-test
+2016-04-25 12:30:33 INFO  Store:27 - new Store created marksDB-test
+2016-04-25 12:46:19 INFO  Store:27 - new Store created marksDB-test
+2016-04-25 12:48:04 INFO  Store:27 - new Store created marksDB-test
+2016-04-25 12:55:02 DEBUG logging:19 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2016-04-25 12:55:02 INFO  Version:30 - HV000001: Hibernate Validator 5.2.4.Final
+2016-04-25 12:55:02 DEBUG DefaultTraversableResolver:70 - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2016-04-25 12:55:02 DEBUG ValidationXmlParser:91 - Trying to load META-INF/validation.xml for XML based Validator configuration.
+2016-04-25 12:55:02 DEBUG ResourceLoaderHelper:54 - Trying to load META-INF/validation.xml via TCCL
+2016-04-25 12:55:02 DEBUG ResourceLoaderHelper:60 - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2016-04-25 12:55:02 DEBUG ValidationXmlParser:98 - No META-INF/validation.xml found. Using annotation based configuration only.
+2016-04-25 12:55:03 INFO  Store:29 - new Store created marksDB-test
+2016-04-25 13:04:51 DEBUG logging:19 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2016-04-25 13:04:51 INFO  Version:30 - HV000001: Hibernate Validator 5.2.4.Final
+2016-04-25 13:04:51 DEBUG DefaultTraversableResolver:70 - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2016-04-25 13:04:51 DEBUG ValidationXmlParser:91 - Trying to load META-INF/validation.xml for XML based Validator configuration.
+2016-04-25 13:04:51 DEBUG ResourceLoaderHelper:54 - Trying to load META-INF/validation.xml via TCCL
+2016-04-25 13:04:51 DEBUG ResourceLoaderHelper:60 - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2016-04-25 13:04:51 DEBUG ValidationXmlParser:98 - No META-INF/validation.xml found. Using annotation based configuration only.
+2016-04-25 13:04:53 INFO  Store:29 - new Store created marksDB-test
+2016-04-25 13:14:05 INFO  Store:28 - new Store created marksDB-test
+2016-04-25 13:17:38 INFO  Store:28 - new Store created marksDB-test
+2016-04-25 13:35:36 DEBUG logging:19 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2016-04-25 13:35:36 INFO  Version:30 - HV000001: Hibernate Validator 5.2.4.Final
+2016-04-25 13:35:36 DEBUG DefaultTraversableResolver:70 - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2016-04-25 13:35:36 DEBUG ValidationXmlParser:91 - Trying to load META-INF/validation.xml for XML based Validator configuration.
+2016-04-25 13:35:36 DEBUG ResourceLoaderHelper:54 - Trying to load META-INF/validation.xml via TCCL
+2016-04-25 13:35:36 DEBUG ResourceLoaderHelper:60 - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2016-04-25 13:35:36 DEBUG ValidationXmlParser:98 - No META-INF/validation.xml found. Using annotation based configuration only.
+2016-04-25 13:35:36 INFO  Store:29 - new Store created marksDB-test
+2016-04-25 13:37:50 DEBUG logging:19 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2016-04-25 13:37:50 INFO  Version:30 - HV000001: Hibernate Validator 5.2.4.Final
+2016-04-25 13:37:50 DEBUG DefaultTraversableResolver:70 - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2016-04-25 13:37:50 DEBUG ValidationXmlParser:91 - Trying to load META-INF/validation.xml for XML based Validator configuration.
+2016-04-25 13:37:50 DEBUG ResourceLoaderHelper:54 - Trying to load META-INF/validation.xml via TCCL
+2016-04-25 13:37:50 DEBUG ResourceLoaderHelper:60 - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2016-04-25 13:37:50 DEBUG ValidationXmlParser:98 - No META-INF/validation.xml found. Using annotation based configuration only.
+2016-04-25 13:37:50 INFO  Store:29 - new Store created marksDB-test
+2016-04-25 13:37:50 DEBUG ConstraintDescriptorImpl:640 - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.Pattern, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={flags=[Ljavax.validation.constraints.Pattern$Flag;@683dbc2c, groups=[Ljava.lang.Class;@68267da0, regexp=.*, message={javax.validation.constraints.Pattern.message}, payload=[Ljava.lang.Class;@2638011}, constraintType=GENERIC}.
+2016-04-25 13:37:50 DEBUG PlatformResourceBundleLocator:126 - ValidationMessages not found.
+2016-04-25 13:37:50 DEBUG PlatformResourceBundleLocator:126 - ContributorValidationMessages not found.
+2016-04-25 13:37:50 DEBUG PlatformResourceBundleLocator:123 - org.hibernate.validator.ValidationMessages found.
+2016-04-25 13:38:54 DEBUG logging:19 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2016-04-25 13:38:54 INFO  Version:30 - HV000001: Hibernate Validator 5.2.4.Final
+2016-04-25 13:38:54 DEBUG DefaultTraversableResolver:70 - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2016-04-25 13:38:54 DEBUG ValidationXmlParser:91 - Trying to load META-INF/validation.xml for XML based Validator configuration.
+2016-04-25 13:38:54 DEBUG ResourceLoaderHelper:54 - Trying to load META-INF/validation.xml via TCCL
+2016-04-25 13:38:54 DEBUG ResourceLoaderHelper:60 - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2016-04-25 13:38:54 DEBUG ValidationXmlParser:98 - No META-INF/validation.xml found. Using annotation based configuration only.
+2016-04-25 13:38:54 INFO  Store:29 - new Store created marksDB-test
+2016-04-25 13:38:55 DEBUG ConstraintDescriptorImpl:640 - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.Pattern, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={flags=[Ljavax.validation.constraints.Pattern$Flag;@683dbc2c, groups=[Ljava.lang.Class;@68267da0, regexp=.*, message={javax.validation.constraints.Pattern.message}, payload=[Ljava.lang.Class;@2638011}, constraintType=GENERIC}.
+2016-04-25 13:38:55 DEBUG PlatformResourceBundleLocator:126 - ValidationMessages not found.
+2016-04-25 13:38:55 DEBUG PlatformResourceBundleLocator:126 - ContributorValidationMessages not found.
+2016-04-25 13:38:55 DEBUG PlatformResourceBundleLocator:123 - org.hibernate.validator.ValidationMessages found.
+2016-04-25 13:45:36 DEBUG logging:19 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2016-04-25 13:45:36 INFO  Version:30 - HV000001: Hibernate Validator 5.2.4.Final
+2016-04-25 13:45:36 DEBUG DefaultTraversableResolver:70 - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2016-04-25 13:45:36 DEBUG ValidationXmlParser:91 - Trying to load META-INF/validation.xml for XML based Validator configuration.
+2016-04-25 13:45:36 DEBUG ResourceLoaderHelper:54 - Trying to load META-INF/validation.xml via TCCL
+2016-04-25 13:45:36 DEBUG ResourceLoaderHelper:60 - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2016-04-25 13:45:36 DEBUG ValidationXmlParser:98 - No META-INF/validation.xml found. Using annotation based configuration only.
+2016-04-25 13:45:36 INFO  Store:29 - new Store created marksDB-test
+2016-04-25 13:45:36 DEBUG ConstraintDescriptorImpl:640 - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.Pattern, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={flags=[Ljavax.validation.constraints.Pattern$Flag;@2f465398, groups=[Ljava.lang.Class;@548e6d58, regexp=.*, message={javax.validation.constraints.Pattern.message}, payload=[Ljava.lang.Class;@623a8092}, constraintType=GENERIC}.
+2016-04-25 13:45:36 DEBUG PlatformResourceBundleLocator:126 - ValidationMessages not found.
+2016-04-25 13:45:36 DEBUG PlatformResourceBundleLocator:126 - ContributorValidationMessages not found.
+2016-04-25 13:45:36 DEBUG PlatformResourceBundleLocator:123 - org.hibernate.validator.ValidationMessages found.
+2016-04-25 14:05:35 DEBUG logging:19 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2016-04-25 14:05:35 INFO  Version:30 - HV000001: Hibernate Validator 5.2.4.Final
+2016-04-25 14:05:35 DEBUG DefaultTraversableResolver:70 - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2016-04-25 14:05:35 DEBUG ValidationXmlParser:91 - Trying to load META-INF/validation.xml for XML based Validator configuration.
+2016-04-25 14:05:35 DEBUG ResourceLoaderHelper:54 - Trying to load META-INF/validation.xml via TCCL
+2016-04-25 14:05:35 DEBUG ResourceLoaderHelper:60 - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2016-04-25 14:05:35 DEBUG ValidationXmlParser:98 - No META-INF/validation.xml found. Using annotation based configuration only.
+2016-04-25 14:05:35 INFO  Store:30 - new Store created marksDB-test
+2016-04-25 14:05:35 DEBUG ConstraintDescriptorImpl:640 - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.Pattern, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={flags=[Ljavax.validation.constraints.Pattern$Flag;@17a7f733, groups=[Ljava.lang.Class;@68567e20, regexp=.*, message={javax.validation.constraints.Pattern.message}, payload=[Ljava.lang.Class;@76ed1b7c}, constraintType=GENERIC}.
+2016-04-25 14:05:35 DEBUG PlatformResourceBundleLocator:126 - ValidationMessages not found.
+2016-04-25 14:05:35 DEBUG PlatformResourceBundleLocator:126 - ContributorValidationMessages not found.
+2016-04-25 14:05:35 DEBUG PlatformResourceBundleLocator:123 - org.hibernate.validator.ValidationMessages found.
+2016-04-25 14:14:32 DEBUG logging:19 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2016-04-25 14:14:32 INFO  Version:30 - HV000001: Hibernate Validator 5.2.4.Final
+2016-04-25 14:14:32 DEBUG DefaultTraversableResolver:70 - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2016-04-25 14:14:32 DEBUG ValidationXmlParser:91 - Trying to load META-INF/validation.xml for XML based Validator configuration.
+2016-04-25 14:14:32 DEBUG ResourceLoaderHelper:54 - Trying to load META-INF/validation.xml via TCCL
+2016-04-25 14:14:32 DEBUG ResourceLoaderHelper:60 - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2016-04-25 14:14:32 DEBUG ValidationXmlParser:98 - No META-INF/validation.xml found. Using annotation based configuration only.
+2016-04-25 14:14:32 INFO  Store:30 - new Store created marksDB-test
+2016-04-25 14:14:32 DEBUG ConstraintDescriptorImpl:640 - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.Pattern, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={flags=[Ljavax.validation.constraints.Pattern$Flag;@17a7f733, groups=[Ljava.lang.Class;@68567e20, regexp=.*, message={javax.validation.constraints.Pattern.message}, payload=[Ljava.lang.Class;@76ed1b7c}, constraintType=GENERIC}.
+2016-04-25 14:14:32 DEBUG PlatformResourceBundleLocator:126 - ValidationMessages not found.
+2016-04-25 14:14:32 DEBUG PlatformResourceBundleLocator:126 - ContributorValidationMessages not found.
+2016-04-25 14:14:32 DEBUG PlatformResourceBundleLocator:123 - org.hibernate.validator.ValidationMessages found.
+2016-04-25 14:16:16 DEBUG logging:19 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2016-04-25 14:16:16 INFO  Version:30 - HV000001: Hibernate Validator 5.2.4.Final
+2016-04-25 14:16:16 DEBUG DefaultTraversableResolver:70 - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2016-04-25 14:16:17 DEBUG ValidationXmlParser:91 - Trying to load META-INF/validation.xml for XML based Validator configuration.
+2016-04-25 14:16:17 DEBUG ResourceLoaderHelper:54 - Trying to load META-INF/validation.xml via TCCL
+2016-04-25 14:16:17 DEBUG ResourceLoaderHelper:60 - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2016-04-25 14:16:17 DEBUG ValidationXmlParser:98 - No META-INF/validation.xml found. Using annotation based configuration only.
+2016-04-25 14:16:17 INFO  Store:30 - new Store created marksDB-test
+2016-04-25 14:16:17 DEBUG ConstraintDescriptorImpl:640 - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.Pattern, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={flags=[Ljavax.validation.constraints.Pattern$Flag;@17a7f733, groups=[Ljava.lang.Class;@68567e20, regexp=.*, message={javax.validation.constraints.Pattern.message}, payload=[Ljava.lang.Class;@76ed1b7c}, constraintType=GENERIC}.
+2016-04-25 14:16:17 DEBUG PlatformResourceBundleLocator:126 - ValidationMessages not found.
+2016-04-25 14:16:17 DEBUG PlatformResourceBundleLocator:126 - ContributorValidationMessages not found.
+2016-04-25 14:16:17 DEBUG PlatformResourceBundleLocator:123 - org.hibernate.validator.ValidationMessages found.
+2016-04-25 14:21:56 DEBUG logging:19 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2016-04-25 14:21:56 INFO  Version:30 - HV000001: Hibernate Validator 5.2.4.Final
+2016-04-25 14:21:56 DEBUG DefaultTraversableResolver:70 - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2016-04-25 14:21:56 DEBUG ValidationXmlParser:91 - Trying to load META-INF/validation.xml for XML based Validator configuration.
+2016-04-25 14:21:56 DEBUG ResourceLoaderHelper:54 - Trying to load META-INF/validation.xml via TCCL
+2016-04-25 14:21:56 DEBUG ResourceLoaderHelper:60 - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2016-04-25 14:21:56 DEBUG ValidationXmlParser:98 - No META-INF/validation.xml found. Using annotation based configuration only.
+2016-04-25 14:21:56 INFO  Store:30 - new Store created marksDB-test
+2016-04-25 14:21:57 DEBUG ConstraintDescriptorImpl:640 - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.Pattern, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={flags=[Ljavax.validation.constraints.Pattern$Flag;@17a7f733, groups=[Ljava.lang.Class;@68567e20, regexp=.*, message={javax.validation.constraints.Pattern.message}, payload=[Ljava.lang.Class;@76ed1b7c}, constraintType=GENERIC}.
+2016-04-25 14:21:57 DEBUG ConstraintDescriptorImpl:640 - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.NotNull, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={message={javax.validation.constraints.NotNull.message}, groups=[Ljava.lang.Class;@593aaf41, payload=[Ljava.lang.Class;@5a56cdac}, constraintType=GENERIC}.
+2016-04-25 14:21:57 DEBUG ConstraintDescriptorImpl:640 - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.Size, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={groups=[Ljava.lang.Class;@7c711375, min=1, message={javax.validation.constraints.Size.message}, max=2147483647, payload=[Ljava.lang.Class;@57cf54e1}, constraintType=GENERIC}.
+2016-04-25 14:21:57 DEBUG ConstraintDescriptorImpl:640 - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.Pattern, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={flags=[Ljavax.validation.constraints.Pattern$Flag;@5b03b9fe, groups=[Ljava.lang.Class;@37d4349f, regexp=.*, message={javax.validation.constraints.Pattern.message}, payload=[Ljava.lang.Class;@434a63ab}, constraintType=GENERIC}.
+2016-04-25 14:21:57 DEBUG PlatformResourceBundleLocator:126 - ValidationMessages not found.
+2016-04-25 14:21:57 DEBUG PlatformResourceBundleLocator:126 - ContributorValidationMessages not found.
+2016-04-25 14:21:57 DEBUG PlatformResourceBundleLocator:123 - org.hibernate.validator.ValidationMessages found.
+2016-04-25 14:21:57 DEBUG PlatformResourceBundleLocator:126 - ValidationMessages not found.
+2016-04-25 14:21:57 DEBUG PlatformResourceBundleLocator:126 - ContributorValidationMessages not found.
+2016-04-25 14:21:57 DEBUG PlatformResourceBundleLocator:123 - org.hibernate.validator.ValidationMessages found.
+2016-04-25 14:25:06 DEBUG logging:19 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2016-04-25 14:25:06 INFO  Version:30 - HV000001: Hibernate Validator 5.2.4.Final
+2016-04-25 14:25:06 DEBUG DefaultTraversableResolver:70 - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2016-04-25 14:25:06 DEBUG ValidationXmlParser:91 - Trying to load META-INF/validation.xml for XML based Validator configuration.
+2016-04-25 14:25:06 DEBUG ResourceLoaderHelper:54 - Trying to load META-INF/validation.xml via TCCL
+2016-04-25 14:25:06 DEBUG ResourceLoaderHelper:60 - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2016-04-25 14:25:06 DEBUG ValidationXmlParser:98 - No META-INF/validation.xml found. Using annotation based configuration only.
+2016-04-25 14:25:06 INFO  Store:30 - new Store created marksDB-test
+2016-04-25 14:25:07 DEBUG ConstraintDescriptorImpl:640 - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.Pattern, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={flags=[Ljavax.validation.constraints.Pattern$Flag;@2118cddf, groups=[Ljava.lang.Class;@17a7f733, regexp=.*, message={javax.validation.constraints.Pattern.message}, payload=[Ljava.lang.Class;@68567e20}, constraintType=GENERIC}.
+2016-04-25 14:25:07 DEBUG ConstraintDescriptorImpl:640 - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.NotNull, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={message={javax.validation.constraints.NotNull.message}, groups=[Ljava.lang.Class;@593aaf41, payload=[Ljava.lang.Class;@5a56cdac}, constraintType=GENERIC}.
+2016-04-25 14:25:07 DEBUG ConstraintDescriptorImpl:640 - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.Size, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={groups=[Ljava.lang.Class;@7c711375, min=1, message={javax.validation.constraints.Size.message}, max=2147483647, payload=[Ljava.lang.Class;@57cf54e1}, constraintType=GENERIC}.
+2016-04-25 14:25:07 DEBUG ConstraintDescriptorImpl:640 - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.Pattern, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={flags=[Ljavax.validation.constraints.Pattern$Flag;@5b03b9fe, groups=[Ljava.lang.Class;@37d4349f, regexp=.*, message={javax.validation.constraints.Pattern.message}, payload=[Ljava.lang.Class;@434a63ab}, constraintType=GENERIC}.
+2016-04-25 14:25:07 DEBUG PlatformResourceBundleLocator:126 - ValidationMessages not found.
+2016-04-25 14:25:07 DEBUG PlatformResourceBundleLocator:126 - ContributorValidationMessages not found.
+2016-04-25 14:25:07 DEBUG PlatformResourceBundleLocator:123 - org.hibernate.validator.ValidationMessages found.
+2016-04-25 14:26:20 DEBUG logging:19 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2016-04-25 14:26:20 INFO  Version:30 - HV000001: Hibernate Validator 5.2.4.Final
+2016-04-25 14:26:20 DEBUG DefaultTraversableResolver:70 - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2016-04-25 14:26:20 DEBUG ValidationXmlParser:91 - Trying to load META-INF/validation.xml for XML based Validator configuration.
+2016-04-25 14:26:20 DEBUG ResourceLoaderHelper:54 - Trying to load META-INF/validation.xml via TCCL
+2016-04-25 14:26:20 DEBUG ResourceLoaderHelper:60 - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2016-04-25 14:26:20 DEBUG ValidationXmlParser:98 - No META-INF/validation.xml found. Using annotation based configuration only.
+2016-04-25 14:26:20 INFO  Store:30 - new Store created marksDB-test
+2016-04-25 14:26:20 DEBUG ConstraintDescriptorImpl:640 - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.Pattern, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={flags=[Ljavax.validation.constraints.Pattern$Flag;@2118cddf, groups=[Ljava.lang.Class;@17a7f733, regexp=.*, message={javax.validation.constraints.Pattern.message}, payload=[Ljava.lang.Class;@68567e20}, constraintType=GENERIC}.
+2016-04-25 14:26:20 DEBUG ConstraintDescriptorImpl:640 - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.NotNull, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={message={javax.validation.constraints.NotNull.message}, groups=[Ljava.lang.Class;@593aaf41, payload=[Ljava.lang.Class;@5a56cdac}, constraintType=GENERIC}.
+2016-04-25 14:26:20 DEBUG ConstraintDescriptorImpl:640 - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.Size, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={groups=[Ljava.lang.Class;@7c711375, min=1, message={javax.validation.constraints.Size.message}, max=2147483647, payload=[Ljava.lang.Class;@57cf54e1}, constraintType=GENERIC}.
+2016-04-25 14:26:20 DEBUG ConstraintDescriptorImpl:640 - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.Pattern, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={flags=[Ljavax.validation.constraints.Pattern$Flag;@5b03b9fe, groups=[Ljava.lang.Class;@37d4349f, regexp=.*, message={javax.validation.constraints.Pattern.message}, payload=[Ljava.lang.Class;@434a63ab}, constraintType=GENERIC}.
+2016-04-25 14:26:20 DEBUG PlatformResourceBundleLocator:126 - ValidationMessages not found.
+2016-04-25 14:26:20 DEBUG PlatformResourceBundleLocator:126 - ContributorValidationMessages not found.
+2016-04-25 14:26:20 DEBUG PlatformResourceBundleLocator:123 - org.hibernate.validator.ValidationMessages found.
+2016-04-25 14:26:21 DEBUG PlatformResourceBundleLocator:126 - ValidationMessages not found.
+2016-04-25 14:26:21 DEBUG PlatformResourceBundleLocator:126 - ContributorValidationMessages not found.
+2016-04-25 14:26:21 DEBUG PlatformResourceBundleLocator:123 - org.hibernate.validator.ValidationMessages found.
+2016-04-25 14:27:44 DEBUG logging:19 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2016-04-25 14:27:44 INFO  Version:30 - HV000001: Hibernate Validator 5.2.4.Final
+2016-04-25 14:27:44 DEBUG DefaultTraversableResolver:70 - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2016-04-25 14:27:44 DEBUG ValidationXmlParser:91 - Trying to load META-INF/validation.xml for XML based Validator configuration.
+2016-04-25 14:27:44 DEBUG ResourceLoaderHelper:54 - Trying to load META-INF/validation.xml via TCCL
+2016-04-25 14:27:44 DEBUG ResourceLoaderHelper:60 - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2016-04-25 14:27:44 DEBUG ValidationXmlParser:98 - No META-INF/validation.xml found. Using annotation based configuration only.
+2016-04-25 14:27:44 INFO  Store:30 - new Store created marksDB-test
+2016-04-25 14:27:44 DEBUG ConstraintDescriptorImpl:640 - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.Pattern, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={flags=[Ljavax.validation.constraints.Pattern$Flag;@2118cddf, groups=[Ljava.lang.Class;@17a7f733, regexp=.*, message={javax.validation.constraints.Pattern.message}, payload=[Ljava.lang.Class;@68567e20}, constraintType=GENERIC}.
+2016-04-25 14:27:44 DEBUG ConstraintDescriptorImpl:640 - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.NotNull, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={message={javax.validation.constraints.NotNull.message}, groups=[Ljava.lang.Class;@593aaf41, payload=[Ljava.lang.Class;@5a56cdac}, constraintType=GENERIC}.
+2016-04-25 14:27:44 DEBUG ConstraintDescriptorImpl:640 - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.Size, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={groups=[Ljava.lang.Class;@7c711375, min=1, message={javax.validation.constraints.Size.message}, max=2147483647, payload=[Ljava.lang.Class;@57cf54e1}, constraintType=GENERIC}.
+2016-04-25 14:27:44 DEBUG ConstraintDescriptorImpl:640 - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.Pattern, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={flags=[Ljavax.validation.constraints.Pattern$Flag;@5b03b9fe, groups=[Ljava.lang.Class;@37d4349f, regexp=.*, message={javax.validation.constraints.Pattern.message}, payload=[Ljava.lang.Class;@434a63ab}, constraintType=GENERIC}.
+2016-04-25 14:27:45 DEBUG PlatformResourceBundleLocator:126 - ValidationMessages not found.
+2016-04-25 14:27:45 DEBUG PlatformResourceBundleLocator:126 - ContributorValidationMessages not found.
+2016-04-25 14:27:45 DEBUG PlatformResourceBundleLocator:123 - org.hibernate.validator.ValidationMessages found.
+2016-04-25 14:27:45 DEBUG PlatformResourceBundleLocator:126 - ValidationMessages not found.
+2016-04-25 14:27:45 DEBUG PlatformResourceBundleLocator:126 - ContributorValidationMessages not found.
+2016-04-25 14:27:45 DEBUG PlatformResourceBundleLocator:123 - org.hibernate.validator.ValidationMessages found.
+2016-04-25 14:28:37 DEBUG logging:19 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2016-04-25 14:28:37 INFO  Version:30 - HV000001: Hibernate Validator 5.2.4.Final
+2016-04-25 14:28:37 DEBUG DefaultTraversableResolver:70 - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2016-04-25 14:28:37 DEBUG ValidationXmlParser:91 - Trying to load META-INF/validation.xml for XML based Validator configuration.
+2016-04-25 14:28:37 DEBUG ResourceLoaderHelper:54 - Trying to load META-INF/validation.xml via TCCL
+2016-04-25 14:28:37 DEBUG ResourceLoaderHelper:60 - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2016-04-25 14:28:37 DEBUG ValidationXmlParser:98 - No META-INF/validation.xml found. Using annotation based configuration only.
+2016-04-25 14:28:37 INFO  Store:30 - new Store created marksDB-test
+2016-04-25 14:28:37 DEBUG ConstraintDescriptorImpl:640 - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.Pattern, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={flags=[Ljavax.validation.constraints.Pattern$Flag;@2118cddf, groups=[Ljava.lang.Class;@17a7f733, regexp=.*, message={javax.validation.constraints.Pattern.message}, payload=[Ljava.lang.Class;@68567e20}, constraintType=GENERIC}.
+2016-04-25 14:28:37 DEBUG ConstraintDescriptorImpl:640 - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.NotNull, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={message={javax.validation.constraints.NotNull.message}, groups=[Ljava.lang.Class;@593aaf41, payload=[Ljava.lang.Class;@5a56cdac}, constraintType=GENERIC}.
+2016-04-25 14:28:37 DEBUG ConstraintDescriptorImpl:640 - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.Size, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={groups=[Ljava.lang.Class;@7c711375, min=1, message={javax.validation.constraints.Size.message}, max=2147483647, payload=[Ljava.lang.Class;@57cf54e1}, constraintType=GENERIC}.
+2016-04-25 14:28:37 DEBUG ConstraintDescriptorImpl:640 - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.Pattern, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={flags=[Ljavax.validation.constraints.Pattern$Flag;@5b03b9fe, groups=[Ljava.lang.Class;@37d4349f, regexp=.*, message={javax.validation.constraints.Pattern.message}, payload=[Ljava.lang.Class;@434a63ab}, constraintType=GENERIC}.
+2016-04-25 14:28:37 DEBUG PlatformResourceBundleLocator:126 - ValidationMessages not found.
+2016-04-25 14:28:37 DEBUG PlatformResourceBundleLocator:126 - ContributorValidationMessages not found.
+2016-04-25 14:28:37 DEBUG PlatformResourceBundleLocator:123 - org.hibernate.validator.ValidationMessages found.
+2016-04-25 14:28:38 DEBUG PlatformResourceBundleLocator:126 - ValidationMessages not found.
+2016-04-25 14:28:38 DEBUG PlatformResourceBundleLocator:126 - ContributorValidationMessages not found.
+2016-04-25 14:28:38 DEBUG PlatformResourceBundleLocator:123 - org.hibernate.validator.ValidationMessages found.
+2016-04-25 14:29:23 DEBUG logging:19 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2016-04-25 14:29:24 INFO  Version:30 - HV000001: Hibernate Validator 5.2.4.Final
+2016-04-25 14:29:24 DEBUG DefaultTraversableResolver:70 - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2016-04-25 14:29:24 DEBUG ValidationXmlParser:91 - Trying to load META-INF/validation.xml for XML based Validator configuration.
+2016-04-25 14:29:24 DEBUG ResourceLoaderHelper:54 - Trying to load META-INF/validation.xml via TCCL
+2016-04-25 14:29:24 DEBUG ResourceLoaderHelper:60 - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2016-04-25 14:29:24 DEBUG ValidationXmlParser:98 - No META-INF/validation.xml found. Using annotation based configuration only.
+2016-04-25 14:29:24 INFO  Store:30 - new Store created marksDB-test
+2016-04-25 14:29:24 DEBUG ConstraintDescriptorImpl:640 - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.Pattern, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={flags=[Ljavax.validation.constraints.Pattern$Flag;@11fc564b, groups=[Ljava.lang.Class;@394a2528, regexp=.*, message={javax.validation.constraints.Pattern.message}, payload=[Ljava.lang.Class;@6236eb5f}, constraintType=GENERIC}.
+2016-04-25 14:29:24 DEBUG ConstraintDescriptorImpl:640 - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.NotNull, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={message={javax.validation.constraints.NotNull.message}, groups=[Ljava.lang.Class;@5b03b9fe, payload=[Ljava.lang.Class;@37d4349f}, constraintType=GENERIC}.
+2016-04-25 14:29:24 DEBUG ConstraintDescriptorImpl:640 - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.Size, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={groups=[Ljava.lang.Class;@434a63ab, min=1, message={javax.validation.constraints.Size.message}, max=2147483647, payload=[Ljava.lang.Class;@6e0f5f7f}, constraintType=GENERIC}.
+2016-04-25 14:29:24 DEBUG ConstraintDescriptorImpl:640 - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.Pattern, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={flags=[Ljavax.validation.constraints.Pattern$Flag;@2805d709, groups=[Ljava.lang.Class;@3ee37e5a, regexp=.*, message={javax.validation.constraints.Pattern.message}, payload=[Ljava.lang.Class;@2ea41516}, constraintType=GENERIC}.
+2016-04-25 14:29:24 DEBUG PlatformResourceBundleLocator:126 - ValidationMessages not found.
+2016-04-25 14:29:24 DEBUG PlatformResourceBundleLocator:126 - ContributorValidationMessages not found.
+2016-04-25 14:29:24 DEBUG PlatformResourceBundleLocator:123 - org.hibernate.validator.ValidationMessages found.
+2016-04-25 14:43:07 DEBUG logging:19 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2016-04-25 14:43:07 INFO  Version:30 - HV000001: Hibernate Validator 5.2.4.Final
+2016-04-25 14:43:07 DEBUG DefaultTraversableResolver:70 - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2016-04-25 14:43:07 DEBUG ValidationXmlParser:91 - Trying to load META-INF/validation.xml for XML based Validator configuration.
+2016-04-25 14:43:07 DEBUG ResourceLoaderHelper:54 - Trying to load META-INF/validation.xml via TCCL
+2016-04-25 14:43:07 DEBUG ResourceLoaderHelper:60 - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2016-04-25 14:43:07 DEBUG ValidationXmlParser:98 - No META-INF/validation.xml found. Using annotation based configuration only.
+2016-04-25 14:43:07 INFO  Store:30 - new Store created marksDB-test
+2016-04-25 14:43:07 DEBUG ConstraintDescriptorImpl:640 - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.Pattern, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={flags=[Ljavax.validation.constraints.Pattern$Flag;@394a2528, groups=[Ljava.lang.Class;@6236eb5f, regexp=.*, message={javax.validation.constraints.Pattern.message}, payload=[Ljava.lang.Class;@7c1e2a9e}, constraintType=GENERIC}.
+2016-04-25 14:43:07 DEBUG PlatformResourceBundleLocator:126 - ValidationMessages not found.
+2016-04-25 14:43:07 DEBUG PlatformResourceBundleLocator:126 - ContributorValidationMessages not found.
+2016-04-25 14:43:07 DEBUG PlatformResourceBundleLocator:123 - org.hibernate.validator.ValidationMessages found.
+2016-04-25 14:43:09 DEBUG ConstraintDescriptorImpl:640 - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.NotNull, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={message={javax.validation.constraints.NotNull.message}, groups=[Ljava.lang.Class;@6caf0677, payload=[Ljava.lang.Class;@413d1baf}, constraintType=GENERIC}.
+2016-04-25 14:43:09 DEBUG ConstraintDescriptorImpl:640 - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.Size, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={groups=[Ljava.lang.Class;@273444fe, min=1, message={javax.validation.constraints.Size.message}, max=2147483647, payload=[Ljava.lang.Class;@33bc72d1}, constraintType=GENERIC}.
+2016-04-25 14:43:09 DEBUG ConstraintDescriptorImpl:640 - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.Pattern, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={flags=[Ljavax.validation.constraints.Pattern$Flag;@1a75e76a, groups=[Ljava.lang.Class;@5524cca1, regexp=.*, message={javax.validation.constraints.Pattern.message}, payload=[Ljava.lang.Class;@5032714f}, constraintType=GENERIC}.
+2016-04-25 14:43:36 DEBUG logging:19 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2016-04-25 14:43:36 INFO  Version:30 - HV000001: Hibernate Validator 5.2.4.Final
+2016-04-25 14:43:36 DEBUG DefaultTraversableResolver:70 - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2016-04-25 14:43:36 DEBUG ValidationXmlParser:91 - Trying to load META-INF/validation.xml for XML based Validator configuration.
+2016-04-25 14:43:36 DEBUG ResourceLoaderHelper:54 - Trying to load META-INF/validation.xml via TCCL
+2016-04-25 14:43:36 DEBUG ResourceLoaderHelper:60 - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2016-04-25 14:43:36 DEBUG ValidationXmlParser:98 - No META-INF/validation.xml found. Using annotation based configuration only.
+2016-04-25 14:43:36 INFO  Store:30 - new Store created marksDB-test
+2016-04-25 14:43:36 DEBUG ConstraintDescriptorImpl:640 - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.Pattern, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={flags=[Ljavax.validation.constraints.Pattern$Flag;@394a2528, groups=[Ljava.lang.Class;@6236eb5f, regexp=.*, message={javax.validation.constraints.Pattern.message}, payload=[Ljava.lang.Class;@7c1e2a9e}, constraintType=GENERIC}.
+2016-04-25 14:43:36 DEBUG PlatformResourceBundleLocator:126 - ValidationMessages not found.
+2016-04-25 14:43:36 DEBUG PlatformResourceBundleLocator:126 - ContributorValidationMessages not found.
+2016-04-25 14:43:36 DEBUG PlatformResourceBundleLocator:123 - org.hibernate.validator.ValidationMessages found.
+2016-04-25 14:43:37 DEBUG ConstraintDescriptorImpl:640 - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.NotNull, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={message={javax.validation.constraints.NotNull.message}, groups=[Ljava.lang.Class;@6caf0677, payload=[Ljava.lang.Class;@413d1baf}, constraintType=GENERIC}.
+2016-04-25 14:43:37 DEBUG ConstraintDescriptorImpl:640 - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.Size, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={groups=[Ljava.lang.Class;@273444fe, min=1, message={javax.validation.constraints.Size.message}, max=2147483647, payload=[Ljava.lang.Class;@33bc72d1}, constraintType=GENERIC}.
+2016-04-25 14:43:37 DEBUG ConstraintDescriptorImpl:640 - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.Pattern, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={flags=[Ljavax.validation.constraints.Pattern$Flag;@1a75e76a, groups=[Ljava.lang.Class;@5524cca1, regexp=.*, message={javax.validation.constraints.Pattern.message}, payload=[Ljava.lang.Class;@5032714f}, constraintType=GENERIC}.
