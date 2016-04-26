@@ -12,7 +12,7 @@ import static spark.Spark.*;
 public class UserController {
 
     private Gson gson = new Gson();
-    public static final String BASE_PATH = "/api/users";
+    public static final String BASE_PATH = "/users";
     private String jsonType = "application/json";
 
     Logger logger = Logger.getLogger(UserController.class);
