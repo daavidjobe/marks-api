@@ -19,7 +19,7 @@ public class Main {
 
         new UserController(new UserService());
 
-        get("/", (req, res) -> "Marks REST API");
+        get("/api", (req, res) -> "Marks REST API");
 
 
     }
