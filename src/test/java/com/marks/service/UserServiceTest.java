@@ -8,7 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Key;
-import org.mongodb.morphia.VerboseJSR303ConstraintViolationException;
 
 import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -44,6 +43,7 @@ public class UserServiceTest {
     public void newUserShouldBeCreated() throws Exception {
         User user = new User();
         user.setEmail("test@test.com");
+        user.setPassword("Testing123");
         Key<User> saved = userService.add(user);
         assertNotNull(saved);
     }
@@ -52,19 +52,32 @@ public class UserServiceTest {
     public void sameUserCanNotBeCreatedAgain() throws Exception {
         User user1 = new User();
         user1.setEmail("test@test.com");
+        user1.setPassword("Testing123");
         Key<User> first = userService.add(user1);
         User user2 = new User();
         user2.setEmail("test@test.com");
+        user2.setPassword("Testing123");
         Key<User> second = userService.add(user2);
         assertNotNull(first);
         assertNull(second);
     }
 
-    @Test(expected = VerboseJSR303ConstraintViolationException.class)
+    @Test
     public void userMustHaveValidEmail() throws Exception {
         User user = new User();
         user.setEmail("test@");
+        user.setPassword("Testing123");
+        assertNull(userService.add(user));
+    }
+
+    @Test
+    public void storedUserCanLogin() throws Exception {
+        User user = new User();
+        user.setEmail("test@test.com");
+        user.setPassword("Testing123");
         userService.add(user);
+        User loggedIn = userService.login("test@test.com", "Testing123");
+        assertNotNull(loggedIn);
     }
 
 }

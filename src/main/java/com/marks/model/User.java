@@ -19,6 +19,12 @@ public class User extends BaseEntity {
     @Indexed(options = @IndexOptions(name = "userEmail", unique = true))
     private String email;
 
+    private String username;
+
+    private String password;
+
+    private String salt;
+
     @Embedded
     @Valid
     private List<Mark> marks = new ArrayList<>();
@@ -31,7 +37,29 @@ public class User extends BaseEntity {
         this.email = email;
     }
 
-    private String username;
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
 
     public List<Mark> getMarks() {
         return marks;
@@ -41,19 +69,14 @@ public class User extends BaseEntity {
         this.marks = marks;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
     @Override
     public String toString() {
         return "User{" +
                 "email='" + email + '\'' +
                 ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", salt='" + salt + '\'' +
                 ", marks=" + marks +
                 '}';
     }

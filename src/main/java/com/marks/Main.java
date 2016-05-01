@@ -19,7 +19,7 @@ public class Main {
 
         new UserController(new UserService());
 
-        get("/api", (req, res) -> "Marks REST API");
+        get(Config.ROOT_PATH, (req, res) -> "Marks REST API");
 
 
     }
