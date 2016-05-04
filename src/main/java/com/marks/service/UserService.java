@@ -1,6 +1,7 @@
 package com.marks.service;
 
 
+import com.marks.model.Mark;
 import com.marks.model.User;
 import com.marks.store.Store;
 import com.marks.util.Hasher;
@@ -29,7 +30,7 @@ public class UserService {
         return store.find(User.class).filter("email =", email).get();
     }
 
-    public Key<User> add(User user) {
+    public boolean signup(User user) {
         try {
             if (getUserByEmail(user.getEmail()) == null) {
                 String salt = Hasher.makeSalt();
@@ -37,18 +38,18 @@ public class UserService {
                     String storedPassword = Hasher.hash(salt + user.getPassword());
                     user.setSalt(salt);
                     user.setPassword(storedPassword);
-                    return store.save(user);
+                    store.save(user);
+                    return true;
                 } else {
                     logger.error("password: " + user.getPassword() + " is not valid");
                 }
             } else {
-                logger.error("add() -> " + user.toString() + "user already exists");
+                logger.error("user already exists");
             }
         } catch(VerboseJSR303ConstraintViolationException e) {
             logger.error(e);
-            return null;
         }
-        return null;
+        return false;
     }
 
     public User login(String email, String password) {
@@ -64,6 +65,18 @@ public class UserService {
         }
         logger.info("login() -> user does not exist");
         return null;
+    }
+
+    public Mark addMark(String url, String userEmail) {
+        User user = getUserByEmail(userEmail);
+        Mark mark = new Mark();
+        mark.setUrl(url);
+        mark.setPublished(false);
+        Key<Mark> saved = store.save(mark);
+        List<Mark> userMarks = user.getMarks();
+        userMarks.add(mark);
+        store.save(user);
+        return store.getByKey(Mark.class, saved);
     }
 
 }

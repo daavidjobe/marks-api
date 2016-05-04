@@ -1,5 +1,6 @@
 package com.marks.service;
 
+import com.marks.model.Mark;
 import com.marks.model.User;
 import com.marks.store.Store;
 import com.marks.util.Config;
@@ -7,10 +8,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mongodb.morphia.Datastore;
-import org.mongodb.morphia.Key;
 
 import static junit.framework.TestCase.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 
 public class UserServiceTest {
@@ -44,8 +44,7 @@ public class UserServiceTest {
         User user = new User();
         user.setEmail("test@test.com");
         user.setPassword("Testing123");
-        Key<User> saved = userService.add(user);
-        assertNotNull(saved);
+        assertTrue(userService.signup(user));
     }
 
     @Test
@@ -53,13 +52,11 @@ public class UserServiceTest {
         User user1 = new User();
         user1.setEmail("test@test.com");
         user1.setPassword("Testing123");
-        Key<User> first = userService.add(user1);
         User user2 = new User();
         user2.setEmail("test@test.com");
         user2.setPassword("Testing123");
-        Key<User> second = userService.add(user2);
-        assertNotNull(first);
-        assertNull(second);
+        assertTrue(userService.signup(user1));
+        assertFalse(userService.signup(user2));
     }
 
     @Test
@@ -67,7 +64,7 @@ public class UserServiceTest {
         User user = new User();
         user.setEmail("test@");
         user.setPassword("Testing123");
-        assertNull(userService.add(user));
+        assertFalse(userService.signup(user));
     }
 
     @Test
@@ -75,9 +72,21 @@ public class UserServiceTest {
         User user = new User();
         user.setEmail("test@test.com");
         user.setPassword("Testing123");
-        userService.add(user);
+        userService.signup(user);
         User loggedIn = userService.login("test@test.com", "Testing123");
         assertNotNull(loggedIn);
+    }
+
+    @Test
+    public void storedUserCanAddMark() throws Exception {
+        User user = new User();
+        user.setEmail("test@test.com");
+        user.setPassword("Testing123");
+        assertTrue(userService.signup(user));
+        Mark mark = userService.addMark("http://google.com", "test@test.com");
+        assertNotNull(mark);
+        User updatedUser = userService.getUserByEmail("test@test.com");
+        assertTrue(updatedUser.getMarks().size() == 1);
     }
 
 }
