@@ -1,7 +1,9 @@
 package com.marks.controller;
 
 import com.google.gson.Gson;
+import com.marks.model.Mark;
 import com.marks.model.User;
+import com.marks.service.MarkService;
 import com.marks.service.UserService;
 import com.marks.util.Config;
 import com.marks.util.JsonTransformer;
@@ -15,7 +17,7 @@ public class UserController {
 
     private Gson gson = new Gson();
     public static final String BASE_PATH = Config.ROOT_PATH + "/users";
-
+    MarkService markService = new MarkService();
     Logger logger = Logger.getLogger(UserController.class);
 
     public UserController(UserService service) {
@@ -38,7 +40,6 @@ public class UserController {
                 res.status(406);
                 return "user could not be created";
             }
-            res.cookie("mrksusrid", user.getEmail(), 2592000, true); // one month
             res.status(201);
             return "user created";
         }, new JsonTransformer());
@@ -53,9 +54,26 @@ public class UserController {
             return "login success";
         }, new JsonTransformer());
 
-        put(BASE_PATH + "/addMark", (req, res) -> {
-            return service.addMark(req.queryParams("url"), req.queryParams("userEmail"));
+        post(BASE_PATH + "/addCategory", (req, res) -> {
+            boolean isAdded = service.addCategory(req.queryParams("categoryName"), req.queryParams("email"));
+            return isAdded == true ? "category added" : "category already exists";
         }, new JsonTransformer());
+
+        put(BASE_PATH + "/addMarkToCategory", (req, res) -> {
+            Mark mark = gson.fromJson(req.body(), Mark.class);
+            String categoryName = req.queryParams("categoryName");
+            String email = req.queryParams("email");
+            boolean isOk = service.addToCategory(mark, email, categoryName);
+            return isOk ? "mark added to" + categoryName : "mark could not be added to category";
+        }, new JsonTransformer());
+
+        get(BASE_PATH + "/findAllMarksForUser", (req, res) -> {
+            return service.findAllMarksForUser(req.queryParams("email"));
+        });
+
+        get(BASE_PATH + "/findAllCategoriesForUser", (req, res) -> {
+            return service.findAllCategoriesForUser(req.queryParams("email"));
+        });
 
     }
 }

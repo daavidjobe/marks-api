@@ -12,7 +12,7 @@ public class Validator {
     private Matcher matcher;
 
     public Validator() {
-        passwordPattern = Pattern.compile("(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{5,10}");
+        passwordPattern = Pattern.compile("(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{5,30}");
     }
 
     public boolean validatePassword(String password) {

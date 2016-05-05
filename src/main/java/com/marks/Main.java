@@ -1,6 +1,8 @@
 package com.marks;
 
+import com.marks.controller.MarkController;
 import com.marks.controller.UserController;
+import com.marks.service.MarkService;
 import com.marks.service.UserService;
 import com.marks.store.Store;
 import com.marks.util.Config;
@@ -18,6 +20,7 @@ public class Main {
         Store.initialize(Config.DB_PROD);
 
         new UserController(new UserService());
+        new MarkController(new MarkService());
 
         get(Config.ROOT_PATH, (req, res) -> "Marks REST API");
 

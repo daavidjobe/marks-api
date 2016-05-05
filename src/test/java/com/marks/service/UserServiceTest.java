@@ -10,19 +10,27 @@ import org.junit.Test;
 import org.mongodb.morphia.Datastore;
 
 import static junit.framework.TestCase.assertNotNull;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 
 public class UserServiceTest {
 
     Datastore store;
     UserService userService;
+    MarkService markService;
+    User testUser;
 
     @Before
     public void setUp() throws Exception {
         Store.initialize(Config.DB_TEST);
         userService = new UserService();
+        markService = new MarkService();
         store = Store.getInstance().getDatastore();
+        testUser = new User();
+        testUser.setEmail("tester@tester.com");
+        testUser.setPassword("Testing123");
+        userService.signup(testUser);
     }
 
     @After
@@ -31,12 +39,8 @@ public class UserServiceTest {
     }
 
     @Test
-    public void gettingUserByEmail() throws Exception {
-        User user = new User();
-        user.setEmail("test@test.com");
-        assertNull(userService.getUserByEmail("test@test.com"));
-        store.save(user);
-        assertNotNull(userService.getUserByEmail("test@test.com"));
+    public void getUserByEmail() throws Exception {
+        assertNotNull(userService.getUserByEmail(testUser.getEmail()));
     }
 
     @Test
@@ -70,23 +74,35 @@ public class UserServiceTest {
     @Test
     public void storedUserCanLogin() throws Exception {
         User user = new User();
-        user.setEmail("test@test.com");
-        user.setPassword("Testing123");
+        user.setEmail("tester42@test.com");
+        user.setPassword("Password123");
         userService.signup(user);
-        User loggedIn = userService.login("test@test.com", "Testing123");
+        User loggedIn = userService.login(user.getEmail(), "Password123");
         assertNotNull(loggedIn);
     }
 
     @Test
-    public void storedUserCanAddMark() throws Exception {
-        User user = new User();
-        user.setEmail("test@test.com");
-        user.setPassword("Testing123");
-        assertTrue(userService.signup(user));
-        Mark mark = userService.addMark("http://google.com", "test@test.com");
-        assertNotNull(mark);
-        User updatedUser = userService.getUserByEmail("test@test.com");
-        assertTrue(updatedUser.getMarks().size() == 1);
+    public void addCategory() throws Exception {
+        assertTrue(userService.addCategory("tech", testUser.getEmail()));
+    }
+
+    @Test
+    public void sameCategoryNameCannotBeAddedTwice() throws Exception {
+        assertTrue(userService.addCategory("tech", testUser.getEmail()));
+        assertFalse(userService.addCategory("tech", testUser.getEmail()));
+    }
+
+    @Test
+    public void addMarkToCategory() throws Exception {
+        Mark mark = markService.addMark("https://timebeat.com", testUser.getEmail());
+        assertTrue(userService.addToCategory(mark, testUser.getEmail(), "all"));
+    }
+
+    @Test
+    public void sameMarkCannotBeAddedTwiceToCategory() throws Exception {
+        Mark mark = markService.addMark("https://timebeat.com", testUser.getEmail());
+        assertTrue(userService.addToCategory(mark, testUser.getEmail(), "all"));
+        assertFalse(userService.addToCategory(mark, testUser.getEmail(), "all"));
     }
 
 }

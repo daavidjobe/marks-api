@@ -7,11 +7,13 @@ import org.mongodb.morphia.annotations.Indexed;
 import org.mongodb.morphia.annotations.Property;
 import org.mongodb.morphia.utils.IndexDirection;
 
+import java.util.List;
+
 /**
  * Created by David Jobe on 4/25/16.
  */
 
-@Entity(value = "marks")
+@Entity("marks")
 public class Mark extends BaseEntity {
 
     @Property
@@ -20,7 +22,18 @@ public class Mark extends BaseEntity {
     @URL
     private String url;
 
+    private String owner;
+
     private boolean published = false;
+
+    private List<String> tags;
+
+    public Mark() {}
+
+    public Mark(String url) {
+        this.url = url;
+    }
+
 
     public String getUrl() {
         return url;
@@ -28,6 +41,14 @@ public class Mark extends BaseEntity {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 
     public boolean isPublished() {
@@ -38,13 +59,21 @@ public class Mark extends BaseEntity {
         this.published = published;
     }
 
+    public List<String> getTags() {
+        return tags;
+    }
 
+    public void setTags(List<String> tags) {
+        this.tags = tags;
+    }
 
     @Override
     public String toString() {
         return "Mark{" +
                 "url='" + url + '\'' +
+                ", owner=" + owner +
                 ", published=" + published +
+                ", tags=" + tags +
                 '}';
     }
 }

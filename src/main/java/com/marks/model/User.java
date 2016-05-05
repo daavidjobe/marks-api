@@ -4,8 +4,6 @@ package com.marks.model;
 import org.hibernate.validator.constraints.Email;
 import org.mongodb.morphia.annotations.Embedded;
 import org.mongodb.morphia.annotations.Entity;
-import org.mongodb.morphia.annotations.IndexOptions;
-import org.mongodb.morphia.annotations.Indexed;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -16,7 +14,6 @@ public class User extends BaseEntity {
 
 
     @Email
-    @Indexed(options = @IndexOptions(name = "userEmail", unique = true))
     private String email;
 
     private String username;
@@ -25,9 +22,16 @@ public class User extends BaseEntity {
 
     private String salt;
 
+    public User() {}
+
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
     @Embedded
     @Valid
-    private List<Mark> marks = new ArrayList<>();
+    private List<Category> categories = new ArrayList<>();
 
     public String getEmail() {
         return email;
@@ -61,14 +65,13 @@ public class User extends BaseEntity {
         this.salt = salt;
     }
 
-    public List<Mark> getMarks() {
-        return marks;
+    public List<Category> getCategories() {
+        return categories;
     }
 
-    public void setMarks(List<Mark> marks) {
-        this.marks = marks;
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
     }
-
 
     @Override
     public String toString() {
@@ -77,7 +80,7 @@ public class User extends BaseEntity {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", salt='" + salt + '\'' +
-                ", marks=" + marks +
+                ", categories=" + categories +
                 '}';
     }
 }
