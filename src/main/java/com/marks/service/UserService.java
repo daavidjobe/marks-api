@@ -8,12 +8,15 @@ import com.marks.store.Store;
 import com.marks.util.Hasher;
 import com.marks.util.Validator;
 import org.apache.log4j.Logger;
-import org.bson.types.ObjectId;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.VerboseJSR303ConstraintViolationException;
 import org.mongodb.morphia.query.Query;
+import org.mongodb.morphia.query.UpdateOperations;
+import org.mongodb.morphia.query.UpdateResults;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 public class UserService {
 
@@ -43,9 +46,6 @@ public class UserService {
                     String storedPassword = Hasher.hash(salt + user.getPassword());
                     user.setSalt(salt);
                     user.setPassword(storedPassword);
-                    Category category = new Category();
-                    category.setName("all");
-                    user.getCategories().add(category);
                     store.save(user);
                     return true;
                 } else {
@@ -88,41 +88,74 @@ public class UserService {
 
     public boolean addCategory(String categoryName, String email) {
         User user = getUserByEmail(email);
-        boolean isOk = true;
         List<Category> categories = user.getCategories();
-        logger.info(categories);
-        for (Category c : categories) {
-            if (c.getName().equals(categoryName)) {
-                logger.info("category already exists");
-                isOk = false;
-            }
-        }
-        Category category = new Category(categoryName);
-        categories.add(category);
+        categories.add(new Category(categoryName, Collections.emptyList()));
         user.setCategories(categories);
-        store.save(user);
-        return isOk;
+        UpdateOperations<User> ops = store.createUpdateOperations(User.class)
+                .set("categories", user.getCategories());
+        UpdateResults result = store.update(
+                store.createQuery(User.class).field("email").equal(user.getEmail()),
+                ops
+        );
+        logger.info("updated: " + result.getWriteResult().isUpdateOfExisting());
+        return result.getWriteResult().isUpdateOfExisting();
     }
 
-    public boolean addToCategory(Mark mark, String email, String categoryName) {
+    public boolean removeCategory(String categoryName, String email) {
         User user = getUserByEmail(email);
-        boolean isOk = false;
         List<Category> categories = user.getCategories();
-        logger.info("adding mark to category: '" + categoryName + "'");
-        for (Category c : categories) {
-            if (c.getName().equals(categoryName)) {
-                if (!c.getMarkIds().contains(mark.getId())) {
-                    isOk = true;
-                    List<ObjectId> markIds = c.getMarkIds();
-                    markIds.add(mark.getId());
-                    c.setMarkIds(markIds);
-                    user.setCategories(categories);
-                    store.save(user);
-                } else {
-                    isOk = false;
-                }
-            }
-        }
-        return isOk;
+        Category category = categories.stream()
+                .filter(c -> c.getName().equals(categoryName)).findFirst().get();
+        categories.remove(category);
+        user.setCategories(categories);
+        UpdateOperations<User> ops = store.createUpdateOperations(User.class)
+                .set("categories", user.getCategories());
+        UpdateResults result = store.update(
+                store.createQuery(User.class).field("email").equal(user.getEmail()),
+                ops
+        );
+        logger.info("updated: " + result.getWriteResult().isUpdateOfExisting());
+        return result.getWriteResult().isUpdateOfExisting();
     }
+
+    public boolean addToCategory(String url, String email, String categoryName) {
+        User user = getUserByEmail(email);
+        List<Category> categories = user.getCategories();
+        Category category = categories.stream()
+                .filter(c -> c.getName().equals(categoryName)).findFirst().orElse(null);
+        if(category == null) {
+            return false;
+        }
+
+        List<String> urls = category.getUrls();
+        if (urls.contains(url)) {
+            logger.info("mark is already added to category: " + categoryName);
+            return false;
+        }
+
+        categories = removeMarkFromCategoryIfPresentInAnotherCategory(categories, url);
+
+        logger.info("adding url: " + url + " to category: " + categoryName);
+        urls.add(url);
+        category.setUrls(urls);
+        UpdateOperations<User> ops = store.createUpdateOperations(User.class)
+                .set("categories", categories);
+        UpdateResults result = store.update(
+                store.createQuery(User.class).field("email").equal(user.getEmail()),
+                ops
+        );
+        return result.getWriteResult().isUpdateOfExisting();
+    }
+
+
+    private List<Category> removeMarkFromCategoryIfPresentInAnotherCategory(List<Category> categories, String url) {
+        Optional<Category> exists = categories.stream().filter(c -> c.getUrls().contains(url)).findAny();
+        if (exists.isPresent()) {
+            logger.info("mark is already assigned to a category - removing it");
+            String toBeRemoved = exists.get().getUrls().stream().filter(u -> u.equals(url)).findFirst().get();
+            exists.get().getUrls().remove(toBeRemoved);
+        }
+        return categories;
+    }
+
 }

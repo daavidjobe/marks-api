@@ -1,25 +1,25 @@
 package com.marks.model;
 
-import org.bson.types.ObjectId;
-import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Embedded;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by David Jobe on 5/5/16.
+ * Created by David Jobe on 5/6/16.
  */
 
-@Entity("categories")
-public class Category extends BaseEntity {
+@Embedded
+public class Category {
 
     private String name;
-    private List<ObjectId> markIds = new ArrayList<>();
+    private List<String> urls = new ArrayList<>();
 
     public Category() {}
 
-    public Category(String name) {
+    public Category(String name, List<String> urls) {
         this.name = name;
+        this.urls = urls;
     }
 
     public String getName() {
@@ -30,19 +30,19 @@ public class Category extends BaseEntity {
         this.name = name;
     }
 
-    public List<ObjectId> getMarkIds() {
-        return markIds;
+    public List<String> getUrls() {
+        return urls;
     }
 
-    public void setMarkIds(List<ObjectId> markIds) {
-        this.markIds = markIds;
+    public void setUrls(List<String> url) {
+        this.urls = urls;
     }
 
     @Override
     public String toString() {
         return "Category{" +
                 "name='" + name + '\'' +
-                ", markIds=" + markIds +
+                ", urls=" + urls +
                 '}';
     }
 }

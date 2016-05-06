@@ -1,6 +1,6 @@
 package com.marks.service;
 
-import com.marks.model.Mark;
+import com.marks.model.Category;
 import com.marks.model.User;
 import com.marks.store.Store;
 import com.marks.util.Config;
@@ -87,22 +87,52 @@ public class UserServiceTest {
     }
 
     @Test
-    public void sameCategoryNameCannotBeAddedTwice() throws Exception {
+    public void removeCategory() throws Exception {
         assertTrue(userService.addCategory("tech", testUser.getEmail()));
-        assertFalse(userService.addCategory("tech", testUser.getEmail()));
+        assertTrue(userService.removeCategory("tech", testUser.getEmail()));
+        assertTrue(testUser.getCategories().size() == 0);
     }
 
     @Test
     public void addMarkToCategory() throws Exception {
-        Mark mark = markService.addMark("https://timebeat.com", testUser.getEmail());
-        assertTrue(userService.addToCategory(mark, testUser.getEmail(), "all"));
+        markService.addMark("https://timebeat.com", testUser.getEmail());
+        assertTrue(userService.addCategory("cat", testUser.getEmail()));
+        assertTrue(userService.addToCategory("https://timebeat.com", testUser.getEmail(), "cat"));
+        User usr = userService.getUserByEmail(testUser.getEmail());
+        System.out.println(usr);
+        assertTrue(usr.getCategories().get(0).getUrls().size() == 1);
+        markService.addMark("https://enigio.com", testUser.getEmail());
+        assertTrue(userService.addToCategory("https://enigio.com", testUser.getEmail(), "cat"));
+        usr = userService.getUserByEmail(testUser.getEmail());
+        System.out.println(usr);
+        assertTrue(usr.getCategories().get(0).getUrls().size() == 2);
     }
 
     @Test
-    public void sameMarkCannotBeAddedTwiceToCategory() throws Exception {
-        Mark mark = markService.addMark("https://timebeat.com", testUser.getEmail());
-        assertTrue(userService.addToCategory(mark, testUser.getEmail(), "all"));
-        assertFalse(userService.addToCategory(mark, testUser.getEmail(), "all"));
+    public void ifMarkIsAlreadyAddedToCategoryThenReturnFalse() throws Exception {
+        markService.addMark("https://timebeat.com", testUser.getEmail());
+        assertTrue(userService.addCategory("cat", testUser.getEmail()));
+        assertTrue(userService.addToCategory("https://timebeat.com", testUser.getEmail(), "cat"));
+        assertFalse(userService.addToCategory("https://timebeat.com", testUser.getEmail(), "cat"));
     }
+
+    @Test
+    public void ifMarkIsMovedToAnotherCategoryItShouldBeRemovedFirst() throws Exception {
+        markService.addMark("https://timebeat.com", testUser.getEmail());
+        assertTrue(userService.addCategory("cat", testUser.getEmail()));
+        assertTrue(userService.addToCategory("https://timebeat.com", testUser.getEmail(), "cat"));
+        assertTrue(userService.addCategory("cat2", testUser.getEmail()));
+        assertTrue(userService.addToCategory("https://timebeat.com", testUser.getEmail(), "cat2"));
+        User usr = userService.getUserByEmail(testUser.getEmail());
+        System.out.println(usr);
+        Category category = usr.getCategories().stream()
+                .filter(c -> c.getName().equals("cat")).findFirst().get();
+
+        assertFalse(category.getUrls().contains("https://timebeat.com"));
+        assertTrue(category.getUrls().size() == 0);
+
+    }
+
+
 
 }

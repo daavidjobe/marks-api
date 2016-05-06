@@ -5,7 +5,6 @@ import org.hibernate.validator.constraints.Email;
 import org.mongodb.morphia.annotations.Embedded;
 import org.mongodb.morphia.annotations.Entity;
 
-import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +29,6 @@ public class User extends BaseEntity {
     }
 
     @Embedded
-    @Valid
     private List<Category> categories = new ArrayList<>();
 
     public String getEmail() {
@@ -84,3 +82,5 @@ public class User extends BaseEntity {
                 '}';
     }
 }
+
+

@@ -9,7 +9,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mongodb.morphia.Datastore;
 
-import static junit.framework.TestCase.assertNotNull;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 /**
  * Created by David Jobe on 4/25/16.
@@ -19,7 +20,6 @@ public class MarkServiceTest {
     Datastore store;
     MarkService markService;
     UserService userService;
-    Mark testMark;
     User testUser;
 
     @Before
@@ -28,9 +28,6 @@ public class MarkServiceTest {
         markService = new MarkService();
         userService = new UserService();
         store = Store.getInstance().getDatastore();
-        testMark = new Mark();
-        testMark.setUrl("http://www.testing.com");
-        store.save(testMark);
         testUser = new User();
         testUser.setEmail("tester@tester.com");
         testUser.setPassword("Testing123");
@@ -43,10 +40,25 @@ public class MarkServiceTest {
     }
 
     @Test
-    public void findById() throws Exception {
-        Mark stored = markService.findById(testMark.getId().toString());
-        assertNotNull(stored);
+    public void newMarkShouldBeAdded() throws Exception {
+        Mark mark = markService.addMark("http://www.enigio.com", "tester@tester.com");
+        assertNotNull(mark);
+        assertNotNull(markService.findById(mark.getId()));
     }
+
+    @Test
+    public void urlMustBeValid() throws Exception {
+        assertNull(markService.addMark("https:/enigio.com", "tester@tester.com"));
+    }
+
+    @Test
+    public void userCannotCreateDuplicateMarks() {
+        Mark mark = markService.addMark("https://enigio.com", "tester@tester.com");
+        Mark mark2 = markService.addMark("https://enigio.com", "tester@tester.com");
+        assertNotNull(mark);
+        assertNull(mark2);
+    }
+
 
 
 
