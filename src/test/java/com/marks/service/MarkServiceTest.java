@@ -11,6 +11,7 @@ import org.mongodb.morphia.Datastore;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by David Jobe on 4/25/16.
@@ -47,16 +48,18 @@ public class MarkServiceTest {
     }
 
     @Test
-    public void urlMustBeValid() throws Exception {
-        assertNull(markService.addMark("https:/enigio.com", "tester@tester.com"));
-    }
-
-    @Test
-    public void userCannotCreateDuplicateMarks() {
+    public void userCannotCreateDuplicateMarks() throws Exception {
         Mark mark = markService.addMark("https://enigio.com", "tester@tester.com");
         Mark mark2 = markService.addMark("https://enigio.com", "tester@tester.com");
         assertNotNull(mark);
         assertNull(mark2);
+    }
+
+    @Test
+    public void removeMark() throws Exception {
+        Mark mark = markService.addMark("https://enigio.com", "tester@tester.com");
+        assertTrue(markService.removeMark(mark).getN() == 1);
+        assertNull(markService.findById(mark.getId()));
     }
 
 

@@ -69,10 +69,9 @@ public class UserController {
 
         get(BASE_PATH + "/findAllMarksForUser", (req, res) -> {
             return service.findAllMarksForUser(req.queryParams("email"));
-        });
+        }, gson::toJson);
 
-        get(BASE_PATH + "/findAllCategoriesForUser", "application/json", (req, res) -> {
-            res.type("application/json");
+        get(BASE_PATH + "/findAllCategoriesForUser", (req, res) -> {
             return service.findAllCategoriesForUser(req.queryParams("email"));
         }, gson::toJson);
 

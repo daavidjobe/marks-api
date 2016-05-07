@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Key;
+import org.mongodb.morphia.VerboseJSR303ConstraintViolationException;
 
 import java.util.List;
 
@@ -36,19 +37,20 @@ public class MarkService {
     }
 
     public Mark addMark(String url, String email) {
-        if(!validator.validateUrl(url)) {
-            logger.info(url + " is invalid");
-            return null;
-        }
         if(isDuplicate(url, email)) {
             logger.info("mark with url: " + url + "is already added by user");
             return null;
         }
-        Mark mark = new Mark(url);
-        mark.setPublished(false);
-        mark.setOwner(email);
-        store.save(mark);
-        return store.find(Mark.class).field("url").equal(url).get();
+        try {
+            Mark mark = new Mark(url);
+            mark.setPublished(false);
+            mark.setOwner(email);
+            store.save(mark);
+            return store.find(Mark.class).field("url").equal(url).get();
+        } catch(VerboseJSR303ConstraintViolationException e) {
+            logger.error("mark with invalid url is not accepted", e);
+            return null;
+        }
     }
 
     private boolean isDuplicate(String url, String email) {
@@ -57,7 +59,9 @@ public class MarkService {
     }
 
     public WriteResult removeMark(Mark mark) {
-        return store.delete(mark);
+        ObjectId id  = new ObjectId(mark.getId());
+        WriteResult wr = store.delete(mark.getClass(), id);
+        return wr;
     }
 
 

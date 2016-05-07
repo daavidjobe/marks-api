@@ -10,7 +10,6 @@ import com.marks.util.Validator;
 import org.apache.log4j.Logger;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.VerboseJSR303ConstraintViolationException;
-import org.mongodb.morphia.query.Query;
 import org.mongodb.morphia.query.UpdateOperations;
 import org.mongodb.morphia.query.UpdateResults;
 
@@ -76,9 +75,7 @@ public class UserService {
     }
 
     public List<Mark> findAllMarksForUser(String email) {
-        Query<Mark> query = store.createQuery(Mark.class);
-        query.field("owner").equal(email);
-        return query.asList();
+        return store.find(Mark.class).filter("owner =", email).asList();
     }
 
     public List<Category> findAllCategoriesForUser(String email) {

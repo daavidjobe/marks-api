@@ -8,6 +8,7 @@ import com.mongodb.WriteResult;
 import org.apache.log4j.Logger;
 
 import static spark.Spark.get;
+import static spark.Spark.post;
 import static spark.Spark.put;
 
 /**
@@ -26,8 +27,14 @@ public class MarkController {
             return service.findAll();
         }, gson::toJson);
 
-        put(BASE_PATH + "/addMark/:url", (req, res) -> {
-            return service.addMark(req.params(":url"), req.queryParams("email"));
+        post(BASE_PATH + "/addMark", (req, res) -> {
+            String url = req.body();
+            Mark mark = service.addMark(url, req.queryParams("email"));
+            if(mark == null) {
+                res.status(406);
+                return "mark could not be created";
+            }
+            return mark;
         }, gson::toJson);
 
         put(BASE_PATH + "/removeMark", (req, res) -> {
