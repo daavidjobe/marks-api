@@ -1,5 +1,6 @@
 package com.marks.service;
 
+import com.marks.dto.MarkMetaDTO;
 import com.marks.model.Mark;
 import com.marks.model.User;
 import com.marks.store.Store;
@@ -9,9 +10,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mongodb.morphia.Datastore;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.*;
 
 /**
  * Created by David Jobe on 4/25/16.
@@ -60,6 +62,18 @@ public class MarkServiceTest {
         Mark mark = markService.addMark("https://enigio.com", "tester@tester.com");
         assertTrue(markService.removeMark(mark).getN() == 1);
         assertNull(markService.findById(mark.getId()));
+    }
+
+    @Test
+    public void assignMetaToMark() throws Exception {
+        Mark mark = markService.addMark("https://enigio.com", "tester@tester.com");
+        List<String> tags = new ArrayList<>();
+        tags.add("time");
+        tags.add("tech");
+        String thumbnail = "dGVzdGVy";
+        MarkMetaDTO meta = new MarkMetaDTO(tags, thumbnail);
+        boolean result = markService.assignMetaToMark(mark, meta);
+        assertTrue(result);
     }
 
 

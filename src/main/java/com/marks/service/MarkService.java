@@ -1,5 +1,6 @@
 package com.marks.service;
 
+import com.marks.dto.MarkMetaDTO;
 import com.marks.model.Mark;
 import com.marks.store.Store;
 import com.marks.util.Validator;
@@ -9,6 +10,8 @@ import org.bson.types.ObjectId;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Key;
 import org.mongodb.morphia.VerboseJSR303ConstraintViolationException;
+import org.mongodb.morphia.query.UpdateOperations;
+import org.mongodb.morphia.query.UpdateResults;
 
 import java.util.List;
 
@@ -27,9 +30,12 @@ public class MarkService {
                 .asList();
     }
 
-    public Mark findById(String id) {
-        ObjectId objId = new ObjectId(id);
-        return store.find(Mark.class).field("id").equal(objId).get();
+    public List<Mark> findPublishedMarks() {
+        return store.createQuery(Mark.class).filter("published", true).asList();
+    }
+
+    public Mark findById(ObjectId id) {
+        return store.find(Mark.class).field("_id").equal(id).get();
     }
 
     public Mark findByKey(Key<Mark> key) {
@@ -59,10 +65,18 @@ public class MarkService {
     }
 
     public WriteResult removeMark(Mark mark) {
-        ObjectId id  = new ObjectId(mark.getId());
-        WriteResult wr = store.delete(mark.getClass(), id);
-        return wr;
+        return store.delete(mark.getClass(), mark.getId());
     }
 
 
+    public boolean assignMetaToMark(Mark mark, MarkMetaDTO meta) {
+        UpdateOperations<Mark> ops = store.createUpdateOperations(Mark.class)
+                .set("tags", meta.getTags()).set("thumbnail", meta.getThumbnail())
+                .set("published", true);
+        UpdateResults result = store.update(
+                store.createQuery(Mark.class).field("_id").equal(mark.getId()),
+                ops);
+        logger.info("update result: " + result);
+        return result.getWriteResult().isUpdateOfExisting();
+    }
 }

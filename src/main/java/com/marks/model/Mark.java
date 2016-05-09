@@ -7,6 +7,7 @@ import org.mongodb.morphia.annotations.Indexed;
 import org.mongodb.morphia.annotations.Property;
 import org.mongodb.morphia.utils.IndexDirection;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,7 +27,9 @@ public class Mark extends BaseEntity {
 
     private boolean published = false;
 
-    private List<String> tags;
+    private List<String> tags = new ArrayList<>();
+
+    private String thumbnail;
 
     public Mark() {}
 
@@ -67,13 +70,22 @@ public class Mark extends BaseEntity {
         this.tags = tags;
     }
 
+    public String getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
+    }
+
     @Override
     public String toString() {
         return "Mark{" +
                 "url='" + url + '\'' +
-                ", owner=" + owner +
+                ", owner='" + owner + '\'' +
                 ", published=" + published +
                 ", tags=" + tags +
+                ", thumbnail='" + thumbnail + '\'' +
                 '}';
     }
 }

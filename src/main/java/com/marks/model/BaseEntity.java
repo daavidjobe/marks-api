@@ -1,5 +1,6 @@
 package com.marks.model;
 
+import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.PrePersist;
 import org.mongodb.morphia.annotations.Version;
@@ -9,7 +10,7 @@ import java.util.Date;
 public abstract class BaseEntity {
 
     @Id
-    protected String id;
+    protected ObjectId id;
 
     @Version
     private Long version;
@@ -27,11 +28,11 @@ public abstract class BaseEntity {
         super();
     }
 
-    public String getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 

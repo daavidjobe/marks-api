@@ -30,6 +30,7 @@ public class Main {
     static int getHerokuAssignedPort() {
         ProcessBuilder processBuilder = new ProcessBuilder();
         if (processBuilder.environment().get("PORT") != null) {
+            Config.SCRAPER_URL = "http://marks-scraper.herokuapp.com";
             return Integer.parseInt(processBuilder.environment().get("PORT"));
         }
         return 4567;
