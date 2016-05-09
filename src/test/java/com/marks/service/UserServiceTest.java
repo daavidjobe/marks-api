@@ -109,6 +109,20 @@ public class UserServiceTest {
     }
 
     @Test
+    public void removeMarkFromCategory() throws Exception {
+        markService.addMark("https://timebeat.com", testUser.getEmail());
+        userService.addCategory("cat", testUser.getEmail());
+        userService.addToCategory("https://timebeat.com", testUser.getEmail(), "cat");
+        User usr = userService.getUserByEmail(testUser.getEmail());
+        Category category = usr.getCategories().stream().filter(cat -> cat.getName().equals("cat")).findFirst().get();
+        assertTrue(category.getUrls().size() == 1);
+        userService.removeFromCategory("https://timebeat.com", testUser.getEmail(), "cat");
+        usr = userService.getUserByEmail(testUser.getEmail());
+        category = usr.getCategories().stream().filter(cat -> cat.getName().equals("cat")).findFirst().get();
+        assertTrue(category.getUrls().size() == 0);
+    }
+
+    @Test
     public void ifMarkIsAlreadyAddedToCategoryThenReturnFalse() throws Exception {
         markService.addMark("https://timebeat.com", testUser.getEmail());
         assertTrue(userService.addCategory("cat", testUser.getEmail()));

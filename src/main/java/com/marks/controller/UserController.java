@@ -59,12 +59,20 @@ public class UserController {
             return isRemoved == true ? "category removed" : "category could not be removed";
         }, gson::toJson);
 
-        put(BASE_PATH + "/addMarkToCategory", (req, res) -> {
+        put(BASE_PATH + "/addMarkToCategory/:categoryName", (req, res) -> {
             Mark mark = gson.fromJson(req.body(), Mark.class);
-            String categoryName = req.queryParams("categoryName");
+            String categoryName = req.params(":categoryName");
             String email = req.queryParams("email");
             boolean isOk = service.addToCategory(mark.getUrl(), email, categoryName);
-            return isOk ? "mark added to" + categoryName : "mark could not be added to category";
+            return isOk ? "mark added to " + categoryName : "mark could not be added to category";
+        }, gson::toJson);
+
+        put(BASE_PATH + "/removeMarkFromCategory/:categoryName", (req, res) -> {
+            Mark mark = gson.fromJson(req.body(), Mark.class);
+            String categoryName = req.params(":categoryName");
+            String email = req.queryParams("email");
+            boolean isOk = service.removeFromCategory(mark.getUrl(), email, categoryName);
+            return isOk ? "mark removed from " + categoryName : "mark could not be removed from category";
         }, gson::toJson);
 
         get(BASE_PATH + "/findAllMarksForUser", (req, res) -> {

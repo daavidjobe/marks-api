@@ -144,6 +144,27 @@ public class UserService {
         return result.getWriteResult().isUpdateOfExisting();
     }
 
+    public boolean removeFromCategory(String url, String email, String categoryName) {
+        User user = getUserByEmail(email);
+        List<Category> categories = user.getCategories();
+        Optional<Category> category = categories.stream().filter(c -> c.getName().equals(categoryName)).findAny();
+        logger.info("removing url: " + url + " from category: " + categoryName);
+        if(category.isPresent()) {
+            String toBeRemoved = category.get().getUrls().stream().filter(u -> u.equals(url)).findFirst().get();
+            List<String> urls = category.get().getUrls();
+            urls.remove(toBeRemoved);
+            category.get().setUrls(urls);
+            UpdateOperations<User> ops = store.createUpdateOperations(User.class)
+                    .set("categories", categories);
+            UpdateResults result = store.update(
+                    store.createQuery(User.class).field("email").equal(user.getEmail()),
+                    ops
+            );
+            return result.getWriteResult().isUpdateOfExisting();
+        }
+        return false;
+    }
+
 
     private List<Category> removeMarkFromCategoryIfPresentInAnotherCategory(List<Category> categories, String url) {
         Optional<Category> exists = categories.stream().filter(c -> c.getUrls().contains(url)).findAny();
