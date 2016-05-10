@@ -4,12 +4,12 @@ import com.marks.controller.MarkController;
 import com.marks.controller.UserController;
 import com.marks.service.MarkService;
 import com.marks.service.UserService;
+import com.marks.sockets.EchoSocket;
 import com.marks.store.Store;
 import com.marks.util.Config;
 import org.apache.log4j.Logger;
 
-import static spark.Spark.get;
-import static spark.Spark.port;
+import static spark.Spark.*;
 
 public class Main {
 
@@ -18,6 +18,8 @@ public class Main {
     public static void main(String[] args) {
         port(getHerokuAssignedPort());
         Store.initialize(Config.DB_PROD);
+
+        webSocket("/api/echo", EchoSocket.class);
 
         new UserController(new UserService());
         new MarkController(new MarkService());

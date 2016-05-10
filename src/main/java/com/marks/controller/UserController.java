@@ -17,6 +17,21 @@ public class UserController {
 
     public UserController(UserService service) {
 
+
+        after((req, res) -> {
+            res.header("Content-Encoding", "gzip");
+        });
+
+        before((req, res) -> {
+            String method = req.requestMethod();
+            if(method.equals("POST") || method.equals("PUT") || method.equals("DELETE")){
+                String Authorization = req.headers("Authorization");
+                if(!Config.AUTH.equals(Authorization)){
+                    halt(401, "User Unauthorized");
+                }
+            }
+        });
+
         /**
          * @return list of all users
          * @see User

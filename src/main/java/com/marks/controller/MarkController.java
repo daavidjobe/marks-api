@@ -27,6 +27,21 @@ public class MarkController {
 
     public MarkController(MarkService service) {
 
+
+        after((req, res) -> {
+            res.header("Content-Encoding", "gzip");
+        });
+
+        before((req, res) -> {
+            String method = req.requestMethod();
+            if(method.equals("POST") || method.equals("PUT") || method.equals("DELETE")){
+                String Authorization = req.headers("Authorization");
+                if(!Config.AUTH.equals(Authorization)){
+                    halt(401, "User Unauthorized");
+                }
+            }
+        });
+
         /**
          * @return List of Marks
          * @see Mark

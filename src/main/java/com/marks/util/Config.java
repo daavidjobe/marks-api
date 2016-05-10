@@ -8,4 +8,5 @@ public class Config {
     public static final String DB_TEST = "marksDB-test";
     public static final String ROOT_PATH = "/api";
     public static String SCRAPER_URL = "http://localhost:8181";
+    public static final String AUTH = "Basic bWFya3Mtd2ViOm1hcmtlcg==";
 }
