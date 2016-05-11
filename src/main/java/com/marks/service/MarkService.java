@@ -72,6 +72,8 @@ public class MarkService {
 
     public boolean assignMetaToMark(Mark mark, MarkMetaDTO meta) {
         List<String> tags = meta.getTags() != null ? meta.getTags() : Collections.emptyList();
+        logger.info(meta.toString());
+        logger.info(mark.toString());
         UpdateOperations<Mark> ops = store.createUpdateOperations(Mark.class)
                 .set("tags", tags).set("thumbnail", meta.getThumbnail())
                 .set("published", true);
