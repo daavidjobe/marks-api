@@ -13,6 +13,7 @@ import org.mongodb.morphia.VerboseJSR303ConstraintViolationException;
 import org.mongodb.morphia.query.UpdateOperations;
 import org.mongodb.morphia.query.UpdateResults;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -70,8 +71,9 @@ public class MarkService {
 
 
     public boolean assignMetaToMark(Mark mark, MarkMetaDTO meta) {
+        List<String> tags = meta.getTags() != null ? meta.getTags() : Collections.emptyList();
         UpdateOperations<Mark> ops = store.createUpdateOperations(Mark.class)
-                .set("tags", meta.getTags()).set("thumbnail", meta.getThumbnail())
+                .set("tags", tags).set("thumbnail", meta.getThumbnail())
                 .set("published", true);
         UpdateResults result = store.update(
                 store.createQuery(Mark.class).field("_id").equal(mark.getId()),
