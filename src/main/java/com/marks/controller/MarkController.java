@@ -8,11 +8,6 @@ import com.marks.util.Config;
 import com.mongodb.WriteResult;
 import org.apache.log4j.Logger;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
 import static spark.Spark.*;
 
 /**
@@ -92,25 +87,9 @@ public class MarkController {
          * Document.
          * @return Data & base64 thumbnail
          */
-        post(BASE_PATH + "/fetchMarkMeta", (req, res) -> {
-            Mark mark = gson.fromJson(req.body(), Mark.class);
-            URL scraper = new URL(Config.SCRAPER_URL + "/scraper?url=" + mark.getUrl());
-            HttpURLConnection con = (HttpURLConnection) scraper.openConnection();
-            int responseCode = con.getResponseCode();
-            logger.info("Sending 'GET' request to URL : " + scraper);
-            logger.info("Response Code : " + responseCode);
-
-            BufferedReader in = new BufferedReader(
-                    new InputStreamReader(con.getInputStream()));
-            String inputLine;
-            StringBuffer response = new StringBuffer();
-
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-            }
-            in.close();
-            MarkMetaDTO meta = gson.fromJson(response.toString(), MarkMetaDTO.class);
-            service.assignMetaToMark(mark, meta);
+        post(BASE_PATH + "/assignMetaToMark", (req, res) -> {
+            MarkMetaDTO meta = gson.fromJson(req.body(), MarkMetaDTO.class);
+            Mark mark = meta.getMark();
             return service.assignMetaToMark(mark, meta) ? meta : "could not fetch meta";
         }, gson::toJson);
 

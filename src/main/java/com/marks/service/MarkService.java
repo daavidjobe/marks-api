@@ -43,6 +43,10 @@ public class MarkService {
         return store.getByKey(Mark.class, key);
     }
 
+    public Mark findUsersMarkByUrl(String email, String url) {
+        return store.createQuery(Mark.class).filter("owner", email).filter("url", url).get();
+    }
+
     public Mark addMark(String url, String email) {
         if(isDuplicate(url, email)) {
             logger.info("mark with url: " + url + "is already added by user");

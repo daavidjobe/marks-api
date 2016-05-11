@@ -1,5 +1,7 @@
 package com.marks.dto;
 
+import com.marks.model.Mark;
+
 import java.util.List;
 
 /**
@@ -8,6 +10,7 @@ import java.util.List;
 public class MarkMetaDTO {
     private List<String> tags;
     private String thumbnail;
+    private Mark mark;
 
     public MarkMetaDTO(List<String> tags, String thumbnail) {
         this.tags = tags;
@@ -30,6 +33,14 @@ public class MarkMetaDTO {
 
     public void setThumbnail(String thumbnail) {
         this.thumbnail = thumbnail;
+    }
+
+    public Mark getMark() {
+        return mark;
+    }
+
+    public void setMark(Mark mark) {
+        this.mark = mark;
     }
 
     @Override
