@@ -48,6 +48,7 @@ public class MarkMetaDTO {
         return "MarkMetaDTO{" +
                 "tags=" + tags +
                 ", thumbnail='" + thumbnail + '\'' +
+                ", mark=" + mark.toString() +
                 '}';
     }
 }

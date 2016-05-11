@@ -21,7 +21,7 @@ public class MarkController {
     Logger logger = Logger.getLogger(MarkController.class);
 
     public MarkController(MarkService service) {
-        
+
         before((req, res) -> {
             String method = req.requestMethod();
             if(method.equals("POST") || method.equals("PUT") || method.equals("DELETE")){
