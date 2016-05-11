@@ -71,7 +71,7 @@ public class MarkController {
          */
         put(BASE_PATH + "/removeMark", (req, res) -> {
             Mark mark = gson.fromJson(req.body(), Mark.class);
-            WriteResult result = service.removeMark(mark);
+            WriteResult result = service.removeOwnerFromMark(mark);
             return result.isUpdateOfExisting();
         }, gson::toJson);
 

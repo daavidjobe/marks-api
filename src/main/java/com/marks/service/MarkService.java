@@ -73,6 +73,15 @@ public class MarkService {
         return store.delete(mark.getClass(), mark.getId());
     }
 
+    public WriteResult removeOwnerFromMark(Mark mark) {
+        UpdateOperations<Mark> ops = store.createUpdateOperations(Mark.class)
+                .set("owner", "");
+        UpdateResults result = store.update(
+                store.createQuery(Mark.class).field("_id").equal(mark.getId()),
+                ops);
+        return result.getWriteResult();
+    }
+
 
     public boolean assignMetaToMark(Mark mark, MarkMetaDTO meta) {
         List<String> tags = meta.getTags() != null ? meta.getTags() : Collections.emptyList();

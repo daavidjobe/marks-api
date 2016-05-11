@@ -14,7 +14,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 /**
  * Created by David Jobe on 5/11/16.
  */
-@WebSocket
+@WebSocket(maxTextMessageSize = 90000)
 public class MarkSocket {
 
     // Store sessions if you want to, for example, broadcast a message to all users
