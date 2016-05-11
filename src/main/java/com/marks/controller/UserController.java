@@ -17,11 +17,6 @@ public class UserController {
 
     public UserController(UserService service) {
 
-
-        after((req, res) -> {
-            res.header("Content-Encoding", "gzip");
-        });
-
         before((req, res) -> {
             String method = req.requestMethod();
             if(method.equals("POST") || method.equals("PUT") || method.equals("DELETE")){
@@ -53,34 +48,11 @@ public class UserController {
 
         /**
          * @body User
-         * @return message telling if the user was created or not
-         * @see User
+         * @return User
          */
-        post(BASE_PATH + "/signup", (req, res) -> {;
+        post(BASE_PATH + "/signin", (req, res) -> {;
             User user = gson.fromJson(req.body(), User.class);
-            logger.info(user);
-            boolean isAdded = service.signup(user);
-            if(!isAdded) {
-                res.status(406);
-                return "user could not be created";
-            }
-            res.status(201);
-            return "user created";
-        }, gson::toJson);
-
-        /**
-         * @body User
-         * @return message telling if the login was successful or not
-         * @see User
-         */
-        post(BASE_PATH + "/login", (req, res) -> {
-            User user = gson.fromJson(req.body(), User.class);
-            if(service.login(user.getEmail(), user.getPassword()) == null) {
-                res.status(406);
-                return "login failed";
-            }
-            res.status(200);
-            return "login success";
+            return service.signin(user);
         }, gson::toJson);
 
         /**

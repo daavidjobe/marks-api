@@ -5,11 +5,9 @@ import com.marks.model.Category;
 import com.marks.model.Mark;
 import com.marks.model.User;
 import com.marks.store.Store;
-import com.marks.util.Hasher;
 import com.marks.util.Validator;
 import org.apache.log4j.Logger;
 import org.mongodb.morphia.Datastore;
-import org.mongodb.morphia.VerboseJSR303ConstraintViolationException;
 import org.mongodb.morphia.query.UpdateOperations;
 import org.mongodb.morphia.query.UpdateResults;
 
@@ -35,43 +33,12 @@ public class UserService {
     }
 
 
-    public boolean signup(User user) {
-        try {
-            if (getUserByEmail(user.getEmail()) == null) {
-                String salt = Hasher.makeSalt();
-                boolean isValid = validator.validatePassword(user.getPassword());
-                logger.info("isValid: " + isValid);
-                if (user.getPassword().length() >= 8 && isValid) {
-                    String storedPassword = Hasher.hash(salt + user.getPassword());
-                    user.setSalt(salt);
-                    user.setPassword(storedPassword);
-                    store.save(user);
-                    return true;
-                } else {
-                    logger.error("password: " + user.getPassword() + " is not valid");
-                }
-            } else {
-                logger.error("user already exists");
-            }
-        } catch (VerboseJSR303ConstraintViolationException e) {
-            logger.error(e);
+    public User signin(User user) {
+        User storedUser = getUserByEmail(user.getEmail());
+        if (storedUser == null) {
+            store.save(user);
         }
-        return false;
-    }
-
-    public User login(String email, String password) {
-        User user = getUserByEmail(email);
-        if (user != null) {
-            String encryptedPassword = Hasher.hash(user.getSalt() + password);
-            if (encryptedPassword.equals(user.getPassword())) {
-                logger.info("login() -> accepted for user " + email);
-                return user;
-            }
-            logger.info("login() -> wrong password " + password + " should be " + user.getPassword());
-            return null;
-        }
-        logger.info("login() -> user does not exist");
-        return null;
+        return getUserByEmail(user.getEmail());
     }
 
     public List<Mark> findAllMarksForUser(String email) {
@@ -120,7 +87,7 @@ public class UserService {
         List<Category> categories = user.getCategories();
         Category category = categories.stream()
                 .filter(c -> c.getName().equals(categoryName)).findFirst().orElse(null);
-        if(category == null) {
+        if (category == null) {
             return false;
         }
 
@@ -149,7 +116,7 @@ public class UserService {
         List<Category> categories = user.getCategories();
         Optional<Category> category = categories.stream().filter(c -> c.getName().equals(categoryName)).findAny();
         logger.info("removing url: " + url + " from category: " + categoryName);
-        if(category.isPresent()) {
+        if (category.isPresent()) {
             String toBeRemoved = category.get().getUrls().stream().filter(u -> u.equals(url)).findFirst().get();
             List<String> urls = category.get().getUrls();
             urls.remove(toBeRemoved);

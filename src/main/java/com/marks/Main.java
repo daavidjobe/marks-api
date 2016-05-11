@@ -4,7 +4,7 @@ import com.marks.controller.MarkController;
 import com.marks.controller.UserController;
 import com.marks.service.MarkService;
 import com.marks.service.UserService;
-import com.marks.sockets.EchoSocket;
+import com.marks.sockets.MarkSocket;
 import com.marks.store.Store;
 import com.marks.util.Config;
 import org.apache.log4j.Logger;
@@ -19,7 +19,7 @@ public class Main {
         port(getHerokuAssignedPort());
         Store.initialize(Config.DB_PROD);
 
-        webSocket("/api/echo", EchoSocket.class);
+        webSocket("/api/socket", MarkSocket.class);
 
         new UserController(new UserService());
         new MarkController(new MarkService());

@@ -33,8 +33,7 @@ public class MarkServiceTest {
         store = Store.getInstance().getDatastore();
         testUser = new User();
         testUser.setEmail("tester@tester.com");
-        testUser.setPassword("Testing123");
-        userService.signup(testUser);
+        testUser = userService.signin(testUser);
     }
 
     @After

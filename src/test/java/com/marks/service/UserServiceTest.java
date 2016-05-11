@@ -29,8 +29,6 @@ public class UserServiceTest {
         store = Store.getInstance().getDatastore();
         testUser = new User();
         testUser.setEmail("tester@tester.com");
-        testUser.setPassword("Testing123");
-        userService.signup(testUser);
     }
 
     @After
@@ -41,44 +39,6 @@ public class UserServiceTest {
     @Test
     public void getUserByEmail() throws Exception {
         assertNotNull(userService.getUserByEmail(testUser.getEmail()));
-    }
-
-    @Test
-    public void newUserShouldBeCreated() throws Exception {
-        User user = new User();
-        user.setEmail("test@test.com");
-        user.setPassword("Testing123");
-        assertTrue(userService.signup(user));
-    }
-
-    @Test
-    public void sameUserCanNotBeCreatedAgain() throws Exception {
-        User user1 = new User();
-        user1.setEmail("test@test.com");
-        user1.setPassword("Testing123");
-        User user2 = new User();
-        user2.setEmail("test@test.com");
-        user2.setPassword("Testing123");
-        assertTrue(userService.signup(user1));
-        assertFalse(userService.signup(user2));
-    }
-
-    @Test
-    public void userMustHaveValidEmail() throws Exception {
-        User user = new User();
-        user.setEmail("test@");
-        user.setPassword("Testing123");
-        assertFalse(userService.signup(user));
-    }
-
-    @Test
-    public void storedUserCanLogin() throws Exception {
-        User user = new User();
-        user.setEmail("tester42@test.com");
-        user.setPassword("Password123");
-        userService.signup(user);
-        User loggedIn = userService.login(user.getEmail(), "Password123");
-        assertNotNull(loggedIn);
     }
 
     @Test

@@ -12,14 +12,14 @@ import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
- * Created by David Jobe on 5/10/16.
+ * Created by David Jobe on 5/11/16.
  */
 @WebSocket
-public class EchoSocket {
+public class MarkSocket {
 
     // Store sessions if you want to, for example, broadcast a message to all users
     private static final Queue<Session> sessions = new ConcurrentLinkedQueue<>();
-    final static Logger logger = Logger.getLogger(EchoSocket.class);
+    final static Logger logger = Logger.getLogger(MarkSocket.class);
 
     @OnWebSocketConnect
     public void connected(Session session) {
@@ -34,8 +34,8 @@ public class EchoSocket {
     }
 
     @OnWebSocketMessage
-    public void message(Session session, String message) throws IOException {
-        logger.info("Got: " + message);   // Print message
-        session.getRemote().sendString(message); // and send it back
+    public void message(Session session, String object) throws IOException {
+        logger.info("Got: " + object);
+        session.getRemote().sendString(object);
     }
 }

@@ -31,7 +31,7 @@ public class MarkService {
     }
 
     public List<Mark> findPublishedMarks() {
-        return store.createQuery(Mark.class).filter("published", true).asList();
+        return store.createQuery(Mark.class).filter("published", true).order("-creationDate").asList();
     }
 
     public Mark findById(ObjectId id) {

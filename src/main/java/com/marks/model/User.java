@@ -17,15 +17,10 @@ public class User extends BaseEntity {
 
     private String username;
 
-    private String password;
-
-    private String salt;
-
     public User() {}
 
     public User(String email, String password) {
         this.email = email;
-        this.password = password;
     }
 
     @Embedded
@@ -47,22 +42,6 @@ public class User extends BaseEntity {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getSalt() {
-        return salt;
-    }
-
-    public void setSalt(String salt) {
-        this.salt = salt;
-    }
-
     public List<Category> getCategories() {
         return categories;
     }
@@ -76,8 +55,6 @@ public class User extends BaseEntity {
         return "User{" +
                 "email='" + email + '\'' +
                 ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", salt='" + salt + '\'' +
                 ", categories=" + categories +
                 '}';
     }
