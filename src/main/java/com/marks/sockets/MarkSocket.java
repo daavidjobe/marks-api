@@ -23,7 +23,7 @@ public class MarkSocket {
 
     @OnWebSocketConnect
     public void connected(Session session) {
-        logger.info("connected()");
+        logger.info(sessions.size() + " connected users");
         sessions.add(session);
     }
 
@@ -36,6 +36,14 @@ public class MarkSocket {
     @OnWebSocketMessage
     public void message(Session session, String object) throws IOException {
         logger.info("Got: " + object);
-        session.getRemote().sendString(object);
+        logger.info(sessions.size() + " connected users");
+        sessions.stream().filter(Session::isOpen).forEach(s -> {
+            try {
+                s.getRemote().sendString(object);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
     }
 }
