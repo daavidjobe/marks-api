@@ -44,4 +44,8 @@ public abstract class BaseEntity {
         this.version = version;
     }
 
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
 }

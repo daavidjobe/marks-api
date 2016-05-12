@@ -29,6 +29,7 @@ public class UserServiceTest {
         store = Store.getInstance().getDatastore();
         testUser = new User();
         testUser.setEmail("tester@tester.com");
+        userService.signin(testUser);
     }
 
     @After

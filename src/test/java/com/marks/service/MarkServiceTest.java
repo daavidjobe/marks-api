@@ -1,7 +1,8 @@
 package com.marks.service;
 
-import com.marks.dto.MarkMetaDTO;
+import com.marks.dto.MarkDTO;
 import com.marks.model.Mark;
+import com.marks.model.MarkMeta;
 import com.marks.model.User;
 import com.marks.store.Store;
 import com.marks.util.Config;
@@ -24,6 +25,7 @@ public class MarkServiceTest {
     MarkService markService;
     UserService userService;
     User testUser;
+    Mark testMark;
 
     @Before
     public void setUp() throws Exception {
@@ -34,6 +36,7 @@ public class MarkServiceTest {
         testUser = new User();
         testUser.setEmail("tester@tester.com");
         testUser = userService.signin(testUser);
+        testMark = markService.addMark("http://www.test.com", "tester@tester.com");
     }
 
     @After
@@ -70,12 +73,36 @@ public class MarkServiceTest {
         tags.add("time");
         tags.add("tech");
         String thumbnail = "dGVzdGVy";
-        MarkMetaDTO meta = new MarkMetaDTO(tags, thumbnail);
+        MarkDTO meta = new MarkDTO(tags, thumbnail);
         boolean result = markService.assignMetaToMark(mark, meta);
         assertTrue(result);
     }
 
+    @Test
+    public void shouldCreateNewMarkMetaForUrlIfAbsent() throws Exception {
+        MarkMeta meta = markService.getMetaForMark(testMark.getUrl());
+        assertNotNull(meta);
+        assertTrue(meta.getUrl().equals(testMark.getUrl()));
+    }
 
+    @Test
+    public void promoteMark() throws Exception {
+        assertTrue(markService.promoteMark(testUser.getEmail(), testMark.getUrl(), true));
+        MarkMeta meta = markService.getMetaForMark(testMark.getUrl());
+        assertTrue(meta.getPromotions() == 1);
+    }
 
+    @Test
+    public void demoteMark() throws Exception {
+        assertTrue(markService.promoteMark(testUser.getEmail(), testMark.getUrl(), false));
+        MarkMeta meta = markService.getMetaForMark(testMark.getUrl());
+        assertTrue(meta.getDemotions() == 1);
+    }
+
+    @Test
+    public void userShouldOnlyBeAbleToDemoteOrPromoteOnce() throws Exception {
+        assertTrue(markService.promoteMark(testUser.getEmail(), testMark.getUrl(), true));
+        assertFalse(markService.promoteMark(testUser.getEmail(), testMark.getUrl(), true));
+    }
 
 }

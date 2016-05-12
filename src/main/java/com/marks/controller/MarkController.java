@@ -1,7 +1,7 @@
 package com.marks.controller;
 
 import com.google.gson.Gson;
-import com.marks.dto.MarkMetaDTO;
+import com.marks.dto.MarkDTO;
 import com.marks.model.Mark;
 import com.marks.service.MarkService;
 import com.marks.util.Config;
@@ -83,9 +83,19 @@ public class MarkController {
          * @return Data & base64 thumbnail
          */
         post(BASE_PATH + "/assignMetaToMark", (req, res) -> {
-            MarkMetaDTO meta = gson.fromJson(req.body(), MarkMetaDTO.class);
+            MarkDTO meta = gson.fromJson(req.body(), MarkDTO.class);
             Mark mark = meta.getMark();
             return service.assignMetaToMark(mark, meta) ? meta : "could not fetch meta";
+        }, gson::toJson);
+
+        put(BASE_PATH + "/promote", (req, res) -> {
+            Mark mark = gson.fromJson(req.body(), Mark.class);
+            return service.promoteMark(req.queryParams("email"), mark.getUrl(), true);
+        }, gson::toJson);
+
+        put(BASE_PATH + "/demote", (req, res) -> {
+            Mark mark = gson.fromJson(req.body(), Mark.class);
+            return service.promoteMark(req.queryParams("email"), mark.getUrl(), false);
         }, gson::toJson);
 
     }

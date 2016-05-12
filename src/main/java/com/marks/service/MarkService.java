@@ -1,7 +1,8 @@
 package com.marks.service;
 
-import com.marks.dto.MarkMetaDTO;
+import com.marks.dto.MarkDTO;
 import com.marks.model.Mark;
+import com.marks.model.MarkMeta;
 import com.marks.store.Store;
 import com.marks.util.Validator;
 import com.mongodb.WriteResult;
@@ -15,6 +16,8 @@ import org.mongodb.morphia.query.UpdateResults;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Created by David Jobe on 4/25/16.
@@ -31,8 +34,13 @@ public class MarkService {
                 .asList();
     }
 
-    public List<Mark> findPublishedMarks() {
-        return store.createQuery(Mark.class).filter("published", true).order("-creationDate").asList();
+    public List<MarkDTO> findPublishedMarks() {
+        List<Mark> marks = store.createQuery(Mark.class).filter("published", true).order("-creationDate").asList();
+        return marks.stream().map(mark -> {
+            MarkMeta meta = getMetaForMark(mark.getUrl());
+            return new MarkDTO(mark.getUrl(), mark.getThumbnail(),
+                    mark.getCreationDate(), meta.getPromotions(), meta.getDemotions());
+        }).collect(Collectors.toList());
     }
 
     public Mark findById(ObjectId id) {
@@ -83,10 +91,8 @@ public class MarkService {
     }
 
 
-    public boolean assignMetaToMark(Mark mark, MarkMetaDTO meta) {
+    public boolean assignMetaToMark(Mark mark, MarkDTO meta) {
         List<String> tags = meta.getTags() != null ? meta.getTags() : Collections.emptyList();
-        logger.info(meta.toString());
-        logger.info(mark.toString());
         UpdateOperations<Mark> ops = store.createUpdateOperations(Mark.class)
                 .set("tags", tags).set("thumbnail", meta.getThumbnail())
                 .set("published", true);
@@ -96,4 +102,46 @@ public class MarkService {
         logger.info("update result: " + result);
         return result.getWriteResult().isUpdateOfExisting();
     }
+
+    public MarkMeta getMetaForMark(String url) {
+        MarkMeta meta = store.find(MarkMeta.class).field("url").equal(url).get();
+        if(meta == null) {
+            meta = new MarkMeta(url);
+            store.save(meta);
+        }
+        return meta;
+    }
+
+    public boolean promoteMark(String email, String url, boolean isPromote) {
+        MarkMeta meta = getMetaForMark(url);
+
+        if(userHasInteracted(email, meta)) {
+            return false;
+        }
+        List<String> userEmails = meta.getUserEmails();
+        userEmails.add(email);
+        UpdateOperations<MarkMeta> ops = null;
+        if(isPromote) {
+            int promotes = meta.getPromotions();
+            ops = store.createUpdateOperations(MarkMeta.class)
+                    .set("promotions", ++promotes).set("userEmails", userEmails);
+        } else {
+            int demotions = meta.getDemotions();
+            ops = store.createUpdateOperations(MarkMeta.class)
+                    .set("demotions", ++demotions).set("userEmails", userEmails);;
+        }
+        UpdateResults result = store.update(
+                store.createQuery(MarkMeta.class).field("url").equal(meta.getUrl()),
+                ops);
+        return result.getWriteResult().isUpdateOfExisting();
+    }
+
+    public boolean userHasInteracted(String email, MarkMeta meta) {
+        Optional<String> user = meta.getUserEmails().stream().filter(e -> e.equals(email)).findFirst();
+        if(user.isPresent()) {
+            return true;
+        }
+        return false;
+    }
+
 }

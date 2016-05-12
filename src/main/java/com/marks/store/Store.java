@@ -1,6 +1,7 @@
 package com.marks.store;
 
 import com.marks.model.Mark;
+import com.marks.model.MarkMeta;
 import com.marks.model.User;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
@@ -24,7 +25,7 @@ public class Store {
     }
 
     private Store() {
-        morphia.map(User.class, Mark.class);
+        morphia.map(User.class, Mark.class, MarkMeta.class);
         MongoClient client;
         String connectionUri = System.getenv("MONGODB_URI");
         if(connectionUri != null) {
