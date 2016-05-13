@@ -49,6 +49,13 @@ public class MarkController {
         }, gson::toJson);
 
         /**
+         * @return list of Marks filtered by published, ordered my popularity
+         */
+        get(BASE_PATH + "/findMostPopularMarks", (req, res) -> {
+            return service.findMostPopularMarks();
+        }, gson::toJson);
+
+        /**
          * Adds a Mark to User
          * @param email
          * @return Mark if it was added. Otherwise a message

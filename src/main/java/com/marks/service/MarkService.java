@@ -15,6 +15,7 @@ import org.mongodb.morphia.query.UpdateOperations;
 import org.mongodb.morphia.query.UpdateResults;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -41,6 +42,19 @@ public class MarkService {
             return new MarkDTO(mark.getUrl(), mark.getThumbnail(),
                     mark.getCreationDate(), meta.getPromotions(), meta.getDemotions());
         }).collect(Collectors.toList());
+    }
+
+    public List<MarkDTO> findMostPopularMarks() {
+        List<Mark> marks = store.createQuery(Mark.class).filter("published", true).asList();
+
+        Comparator<MarkDTO> byPromotions = (m1, m2) -> Integer.compare(
+                m2.getPromotions(), m1.getPromotions());
+
+        return marks.stream().map(mark -> {
+            MarkMeta meta = getMetaForMark(mark.getUrl());
+            return new MarkDTO(mark.getUrl(), mark.getThumbnail(),
+                    mark.getCreationDate(), meta.getPromotions(), meta.getDemotions());
+        }).sorted(byPromotions).limit(50).collect(Collectors.toList());
     }
 
     public Mark findById(ObjectId id) {
