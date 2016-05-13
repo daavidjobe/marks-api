@@ -11,6 +11,10 @@ import org.mongodb.morphia.Morphia;
 import org.mongodb.morphia.ValidationExtension;
 
 
+/*
+    MongoDB connections and config
+ */
+
 public class Store {
 
     private Morphia morphia = new Morphia();

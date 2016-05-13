@@ -6,6 +6,9 @@ import java.util.regex.Pattern;
 /**
  * Created by David Jobe on 4/29/16.
  */
+
+
+//TODO remove?
 public class Validator {
 
     private Pattern passwordPattern;

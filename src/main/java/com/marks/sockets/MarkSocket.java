@@ -14,6 +14,12 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 /**
  * Created by David Jobe on 5/11/16.
  */
+
+/**
+ * This websocket is responsible for updating the feed tab for all connected users
+ * when a new Mark is created by someone.
+ */
+
 @WebSocket(maxTextMessageSize = 90000)
 public class MarkSocket {
 

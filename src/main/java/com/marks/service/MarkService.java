@@ -86,6 +86,7 @@ public class MarkService {
         }
     }
 
+    // User should not be able to create Mark for same url twice
     private boolean isDuplicate(String url, String email) {
         List<Mark> userMarks = userService.findAllMarksForUser(email);
         return userMarks.stream().anyMatch(m -> m.getUrl().equals(url));
@@ -104,7 +105,7 @@ public class MarkService {
         return result.getWriteResult();
     }
 
-
+    // Updates Mark data with response from Scraper
     public boolean assignMetaToMark(Mark mark, MarkDTO meta) {
         List<String> tags = meta.getTags() != null ? meta.getTags() : Collections.emptyList();
         UpdateOperations<Mark> ops = store.createUpdateOperations(Mark.class)
@@ -126,6 +127,7 @@ public class MarkService {
         return meta;
     }
 
+    //Promote or demote a mark specified by boolean flag
     public boolean promoteMark(String email, String url, boolean isPromote) {
         MarkMeta meta = getMetaForMark(url);
 
