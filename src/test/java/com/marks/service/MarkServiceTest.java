@@ -67,14 +67,14 @@ public class MarkServiceTest {
     }
 
     @Test
-    public void assignMetaToMark() throws Exception {
+    public void assignThumbnailToMark() throws Exception {
         Mark mark = markService.addMark("https://enigio.com", "tester@tester.com");
         List<String> tags = new ArrayList<>();
         tags.add("time");
         tags.add("tech");
         String thumbnail = "dGVzdGVy";
         MarkDTO meta = new MarkDTO(tags, thumbnail);
-        boolean result = markService.assignMetaToMark(mark, meta);
+        boolean result = markService.assignThumbnailToMark(mark, meta);
         assertTrue(result);
     }
 

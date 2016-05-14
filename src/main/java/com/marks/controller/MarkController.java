@@ -89,10 +89,10 @@ public class MarkController {
          * Document.
          * @return Data & base64 thumbnail
          */
-        post(BASE_PATH + "/assignMetaToMark", (req, res) -> {
+        post(BASE_PATH + "/assignThumbnailToMark", (req, res) -> {
             MarkDTO meta = gson.fromJson(req.body(), MarkDTO.class);
             Mark mark = meta.getMark();
-            return service.assignMetaToMark(mark, meta) ? meta : "could not fetch meta";
+            return service.assignThumbnailToMark(mark, meta) ? meta : "could not fetch meta";
         }, gson::toJson);
 
         put(BASE_PATH + "/promote", (req, res) -> {
