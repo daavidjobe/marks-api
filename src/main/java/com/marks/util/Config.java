@@ -10,7 +10,7 @@ package com.marks.util;
 */
 
 public class Config {
-    public static final String DB_PROD = "heroku_1j9557r5";
+    public static final String DB_PROD = "heroku_kl6ckb4f";
     public static final String DB_TEST = "marksDB-test";
     public static final String ROOT_PATH = "/api";
     public static String SCRAPER_URL = "http://localhost:8181";
