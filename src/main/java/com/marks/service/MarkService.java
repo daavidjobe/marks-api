@@ -39,7 +39,7 @@ public class MarkService {
         return marks.stream().map(mark -> {
             MarkMeta meta = getMetaForMark(mark.getUrl());
             return new MarkDTO(mark.getUrl(), mark.getThumbnail(),
-                    mark.getCreationDate(), meta.getPromotions(), meta.getDemotions());
+                    mark.getCreationDate().getTime(), meta.getPromotions(), meta.getDemotions());
         }).collect(Collectors.toList());
     }
 
@@ -52,7 +52,7 @@ public class MarkService {
         return marks.stream().map(mark -> {
             MarkMeta meta = getMetaForMark(mark.getUrl());
             return new MarkDTO(mark.getUrl(), mark.getThumbnail(),
-                    mark.getCreationDate(), meta.getPromotions(), meta.getDemotions());
+                    mark.getCreationDate().getTime(), meta.getPromotions(), meta.getDemotions());
         }).sorted(byPromotions).limit(50).collect(Collectors.toList());
     }
 
