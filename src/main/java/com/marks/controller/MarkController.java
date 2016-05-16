@@ -97,12 +97,14 @@ public class MarkController {
 
         put(BASE_PATH + "/promote", (req, res) -> {
             Mark mark = gson.fromJson(req.body(), Mark.class);
-            return service.promoteMark(req.queryParams("email"), mark.getUrl(), true);
+            return service.promoteMark(req.queryParams("email"), mark.getUrl(), true) ?
+                    "mark promoted" : "error";
         }, gson::toJson);
 
         put(BASE_PATH + "/demote", (req, res) -> {
             Mark mark = gson.fromJson(req.body(), Mark.class);
-            return service.promoteMark(req.queryParams("email"), mark.getUrl(), false);
+            return service.promoteMark(req.queryParams("email"), mark.getUrl(), false) ?
+                    "mark demoted" : "error";
         }, gson::toJson);
 
     }
