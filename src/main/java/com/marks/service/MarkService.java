@@ -34,16 +34,17 @@ public class MarkService {
                 .asList();
     }
 
-    public List<MarkDTO> findPublishedMarks() {
+    public List<MarkDTO> findPublishedMarks(String email) {
         List<Mark> marks = store.createQuery(Mark.class).filter("published", true).order("-creationDate").asList();
         return marks.stream().map(mark -> {
             MarkMeta meta = getMetaForMark(mark.getUrl());
             return new MarkDTO(mark.getUrl(), mark.getThumbnail(),
-                    mark.getCreationDate(), meta.getPromotions(), meta.getDemotions());
+                    mark.getCreationDate(), meta.getPromotions(), meta.getDemotions(),
+                    email != null ? userHasInteracted(email, meta) : null);
         }).collect(Collectors.toList());
     }
 
-    public List<MarkDTO> findMostPopularMarks() {
+    public List<MarkDTO> findMostPopularMarks(String email) {
         List<Mark> marks = store.createQuery(Mark.class).filter("published", true).asList();
 
         Comparator<MarkDTO> byPromotions = (m1, m2) -> Integer.compare(
@@ -52,7 +53,8 @@ public class MarkService {
         return marks.stream().map(mark -> {
             MarkMeta meta = getMetaForMark(mark.getUrl());
             return new MarkDTO(mark.getUrl(), mark.getThumbnail(),
-                    mark.getCreationDate(), meta.getPromotions(), meta.getDemotions());
+                    mark.getCreationDate(), meta.getPromotions(), meta.getDemotions(),
+                    email != null ? userHasInteracted(email, meta) : null);
         }).sorted(byPromotions).limit(50).collect(Collectors.toList());
     }
 

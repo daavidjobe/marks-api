@@ -45,14 +45,14 @@ public class MarkController {
          * @see Mark
          */
         get(BASE_PATH + "/findPublishedMarks", (req, res) -> {
-            return service.findPublishedMarks();
+            return service.findPublishedMarks(req.queryParams("email"));
         }, gson::toJson);
 
         /**
          * @return list of Marks filtered by published, ordered my popularity
          */
         get(BASE_PATH + "/findMostPopularMarks", (req, res) -> {
-            return service.findMostPopularMarks();
+            return service.findMostPopularMarks(req.queryParams("email"));
         }, gson::toJson);
 
         /**

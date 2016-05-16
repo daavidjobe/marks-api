@@ -42,7 +42,7 @@ public class UserService {
     }
 
     public List<Mark> findAllMarksForUser(String email) {
-        return store.find(Mark.class).filter("owner =", email).asList();
+        return store.find(Mark.class).filter("owner =", email).order("-creationDate").asList();
     }
 
     public List<Category> findAllCategoriesForUser(String email) {

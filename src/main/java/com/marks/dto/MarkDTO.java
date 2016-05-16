@@ -23,12 +23,13 @@ public class MarkDTO {
         this.thumbnail = thumbnail;
     }
 
-    public MarkDTO(String url, String thumbnail, Date creationDate, int promotions, int demotions) {
+    public MarkDTO(String url, String thumbnail, Date creationDate, int promotions, int demotions, boolean hasInteracted) {
         this.url = url;
         this.thumbnail = thumbnail;
         this.creationDate = creationDate;
         this.promotions = promotions;
         this.demotions = demotions;
+        this.hasInteracted = hasInteracted;
     }
 
     public MarkDTO() {}
@@ -85,6 +86,10 @@ public class MarkDTO {
         return creationDate;
     }
 
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
     @Override
     public String toString() {
         return "MarkDTO{" +
@@ -94,7 +99,8 @@ public class MarkDTO {
                 ", promotions=" + promotions +
                 ", demotions=" + demotions +
                 ", url='" + url + '\'' +
-                ", creationDate='" + creationDate + '\'' +
+                ", creationDate=" + creationDate +
+                ", hasInteracted=" + hasInteracted +
                 '}';
     }
 }
