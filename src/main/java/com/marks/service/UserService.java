@@ -5,7 +5,6 @@ import com.marks.model.Category;
 import com.marks.model.Mark;
 import com.marks.model.User;
 import com.marks.store.Store;
-import com.marks.util.Validator;
 import org.apache.log4j.Logger;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.query.UpdateOperations;
@@ -18,7 +17,6 @@ import java.util.Optional;
 public class UserService {
 
     Datastore store = Store.getInstance().getDatastore();
-    Validator validator = new Validator();
 
     Logger logger = Logger.getLogger(UserService.class);
 
@@ -32,6 +30,8 @@ public class UserService {
         return store.find(User.class).filter("email =", email).get();
     }
 
+
+    // sign in user. If it´s the first time a new user will be stored
 
     public User signin(User user) {
         User storedUser = getUserByEmail(user.getEmail());
@@ -50,6 +50,8 @@ public class UserService {
         return user.getCategories();
     }
 
+    // Adds a user defined category
+
     public boolean addCategory(String categoryName, String email) {
         User user = getUserByEmail(email);
         List<Category> categories = user.getCategories();
@@ -64,6 +66,8 @@ public class UserService {
         logger.info("updated: " + result.getWriteResult().isUpdateOfExisting());
         return result.getWriteResult().isUpdateOfExisting();
     }
+
+    // Removes a user defined category
 
     public boolean removeCategory(String categoryName, String email) {
         User user = getUserByEmail(email);
@@ -81,6 +85,8 @@ public class UserService {
         logger.info("updated: " + result.getWriteResult().isUpdateOfExisting());
         return result.getWriteResult().isUpdateOfExisting();
     }
+
+    // Add the mark to a user defined category
 
     public boolean addToCategory(String url, String email, String categoryName) {
         User user = getUserByEmail(email);
@@ -111,6 +117,8 @@ public class UserService {
         return result.getWriteResult().isUpdateOfExisting();
     }
 
+    // Removes a Mark from A user defined category
+
     public boolean removeFromCategory(String url, String email, String categoryName) {
         User user = getUserByEmail(email);
         List<Category> categories = user.getCategories();
@@ -132,6 +140,8 @@ public class UserService {
         return false;
     }
 
+
+    // Helper method for removing Mark from a Category wich it is already placed in
 
     private List<Category> removeMarkFromCategoryIfPresentInAnotherCategory(List<Category> categories, String url) {
         Optional<Category> exists = categories.stream().filter(c -> c.getUrls().contains(url)).findAny();

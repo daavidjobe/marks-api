@@ -5,6 +5,7 @@ import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.PrePersist;
 import org.mongodb.morphia.annotations.Version;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public abstract class BaseEntity {
@@ -15,13 +16,13 @@ public abstract class BaseEntity {
     @Version
     private Long version;
 
-    protected Date creationDate;
-    protected Date lastChange;
+    protected Timestamp creationDate;
+    protected Timestamp lastChange;
 
     @PrePersist
     public void prePersist() {
-        creationDate = (creationDate == null) ? new Date() : creationDate;
-        lastChange = (lastChange == null) ? creationDate : new Date();
+        creationDate = (creationDate == null) ? new Timestamp(new Date().getTime()) : creationDate;
+        lastChange = (lastChange == null) ? creationDate : new Timestamp(new Date().getTime());
     }
 
     public BaseEntity() {
@@ -44,7 +45,7 @@ public abstract class BaseEntity {
         this.version = version;
     }
 
-    public Date getCreationDate() {
+    public Timestamp getCreationDate() {
         return creationDate;
     }
 

@@ -2,6 +2,7 @@ package com.marks.dto;
 
 import com.marks.model.Mark;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class MarkDTO {
     private int promotions;
     private int demotions;
     private String url;
-    private Date creationDate;
+    private Timestamp creationDate;
     private boolean hasInteracted;
 
     public MarkDTO(List<String> tags, String thumbnail) {
@@ -23,7 +24,8 @@ public class MarkDTO {
         this.thumbnail = thumbnail;
     }
 
-    public MarkDTO(String url, String thumbnail, Date creationDate, int promotions, int demotions, boolean hasInteracted) {
+    public MarkDTO(String url, String thumbnail, Timestamp creationDate,
+                   int promotions, int demotions, boolean hasInteracted) {
         this.url = url;
         this.thumbnail = thumbnail;
         this.creationDate = creationDate;
@@ -86,7 +88,7 @@ public class MarkDTO {
         return creationDate;
     }
 
-    public void setCreationDate(Date creationDate) {
+    public void setCreationDate(Timestamp creationDate) {
         this.creationDate = creationDate;
     }
 

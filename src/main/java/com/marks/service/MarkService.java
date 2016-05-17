@@ -4,19 +4,21 @@ import com.marks.dto.MarkDTO;
 import com.marks.model.Mark;
 import com.marks.model.MarkMeta;
 import com.marks.store.Store;
-import com.marks.util.Validator;
 import com.mongodb.WriteResult;
 import org.apache.log4j.Logger;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.Datastore;
-import org.mongodb.morphia.Key;
 import org.mongodb.morphia.VerboseJSR303ConstraintViolationException;
 import org.mongodb.morphia.query.UpdateOperations;
 import org.mongodb.morphia.query.UpdateResults;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
@@ -27,7 +29,6 @@ public class MarkService {
     Datastore store = Store.getInstance().getDatastore();
     UserService userService = new UserService();
     Logger logger = Logger.getLogger(MarkService.class);
-    Validator validator = new Validator();
 
     public List<Mark> findAll() {
         return store.createQuery(Mark.class)
@@ -35,40 +36,39 @@ public class MarkService {
     }
 
     public List<MarkDTO> findPublishedMarks(String email) {
-        List<Mark> marks = store.createQuery(Mark.class).filter("published", true).order("-creationDate").asList();
+        List<Mark> marks = store.createQuery(Mark.class).filter("published", true)
+                .order("-creationDate").limit(200).asList();
         return marks.stream().map(mark -> {
             MarkMeta meta = getMetaForMark(mark.getUrl());
+            boolean hasInteracted = userHasInteracted(email, meta);
             return new MarkDTO(mark.getUrl(), mark.getThumbnail(),
                     mark.getCreationDate(), meta.getPromotions(), meta.getDemotions(),
-                    email != null ? userHasInteracted(email, meta) : null);
-        }).collect(Collectors.toList());
+                    hasInteracted);
+        }).filter(distinctByKey(MarkDTO::getUrl)).collect(Collectors.toList());
     }
 
     public List<MarkDTO> findMostPopularMarks(String email) {
         List<Mark> marks = store.createQuery(Mark.class).filter("published", true).asList();
-
         Comparator<MarkDTO> byPromotions = (m1, m2) -> Integer.compare(
                 m2.getPromotions(), m1.getPromotions());
-
         return marks.stream().map(mark -> {
             MarkMeta meta = getMetaForMark(mark.getUrl());
+            boolean hasInteracted = userHasInteracted(email, meta);
             return new MarkDTO(mark.getUrl(), mark.getThumbnail(),
                     mark.getCreationDate(), meta.getPromotions(), meta.getDemotions(),
-                    email != null ? userHasInteracted(email, meta) : null);
-        }).sorted(byPromotions).limit(50).collect(Collectors.toList());
+                    hasInteracted);
+        }).filter(distinctByKey(MarkDTO::getUrl)).sorted(byPromotions).limit(100).collect(Collectors.toList());
+    }
+
+    private static <T> Predicate<T> distinctByKey(Function<? super T,Object> keyExtractor) {
+        Map<Object,Boolean> seen = new ConcurrentHashMap<>();
+        return t -> seen.putIfAbsent(keyExtractor.apply(t), Boolean.TRUE) == null;
     }
 
     public Mark findById(ObjectId id) {
         return store.find(Mark.class).field("_id").equal(id).get();
     }
 
-    public Mark findByKey(Key<Mark> key) {
-        return store.getByKey(Mark.class, key);
-    }
-
-    public Mark findUsersMarkByUrl(String email, String url) {
-        return store.createQuery(Mark.class).filter("owner", email).filter("url", url).get();
-    }
 
     public Mark addMark(String url, String email) {
         if(isDuplicate(url, email)) {
@@ -107,6 +107,7 @@ public class MarkService {
     }
 
     // Updates Mark data with response from Scraper
+
     public boolean assignThumbnailToMark(Mark mark, MarkDTO meta) {
         UpdateOperations<Mark> ops = store.createUpdateOperations(Mark.class)
                 .set("thumbnail", meta.getThumbnail())
@@ -118,6 +119,8 @@ public class MarkService {
         return result.getWriteResult().isUpdateOfExisting();
     }
 
+    // Retrieves additional data from Mark
+
     public MarkMeta getMetaForMark(String url) {
         MarkMeta meta = store.find(MarkMeta.class).field("url").equal(url).get();
         if(meta == null) {
@@ -128,6 +131,7 @@ public class MarkService {
     }
 
     //Promote or demote a mark specified by boolean flag
+
     public boolean promoteMark(String email, String url, boolean isPromote) {
         MarkMeta meta = getMetaForMark(url);
 
@@ -154,7 +158,7 @@ public class MarkService {
 
     public boolean userHasInteracted(String email, MarkMeta meta) {
         Optional<String> user = meta.getUserEmails().stream().filter(e -> e.equals(email)).findFirst();
-        if(user.isPresent()) {
+        if(user.isPresent() && email != null) {
             return true;
         }
         return false;
