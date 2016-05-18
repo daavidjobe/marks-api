@@ -26,7 +26,7 @@ public class Main {
 
         get(Config.ROOT_PATH, (req, res) -> "Marks REST API");
 
-        get(Config.ROOT_PATH + "/port", (req, res) -> Config.PORT);
+        get(Config.ROOT_PATH + "/webSocketUrl", (req, res) -> "ws://" + Config.BASE_URL + ":" + Config.PORT + "/api/socket");
 
     }
 
@@ -34,6 +34,7 @@ public class Main {
         ProcessBuilder processBuilder = new ProcessBuilder();
         if (processBuilder.environment().get("PORT") != null) {
             Config.SCRAPER_URL = "http://marks-scraper.herokuapp.com";
+            Config.BASE_URL = "http://marks-api.herokuapp.com";
             Config.PORT = Integer.parseInt(processBuilder.environment().get("PORT"));
         }
         return Config.PORT;
