@@ -7,13 +7,10 @@ import com.marks.service.UserService;
 import com.marks.sockets.MarkSocket;
 import com.marks.store.Store;
 import com.marks.util.Config;
-import org.apache.log4j.Logger;
 
 import static spark.Spark.*;
 
 public class Main {
-
-    final static Logger logger = Logger.getLogger(Main.class);
 
     public static void main(String[] args) {
         port(getHerokuAssignedPort());
@@ -26,7 +23,7 @@ public class Main {
 
         get(Config.ROOT_PATH, (req, res) -> "Marks REST API");
 
-        get(Config.ROOT_PATH + "/webSocketUrl", (req, res) -> "ws://" + Config.BASE_URL + ":" + Config.PORT + "/api/socket");
+        get(Config.ROOT_PATH + "/webSocketUrl", (req, res) -> "ws://" + Config.BASE_URL + "/api/socket");
 
     }
 
