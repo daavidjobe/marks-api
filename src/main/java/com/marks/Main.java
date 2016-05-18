@@ -34,7 +34,7 @@ public class Main {
         ProcessBuilder processBuilder = new ProcessBuilder();
         if (processBuilder.environment().get("PORT") != null) {
             Config.SCRAPER_URL = "http://marks-scraper.herokuapp.com";
-            Config.BASE_URL = "marks-proxy.herokuapp.com";
+            Config.BASE_URL = "marks-api.herokuapp.com";
             Config.PORT = Integer.parseInt(processBuilder.environment().get("PORT"));
         }
         return Config.PORT;
