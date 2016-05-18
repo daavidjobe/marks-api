@@ -22,8 +22,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 @WebSocket(maxTextMessageSize = 90000)
 public class MarkSocket {
-
-    // Store sessions if you want to, for example, broadcast a message to all users
+    
     private static final Queue<Session> sessions = new ConcurrentLinkedQueue<>();
     final static Logger logger = Logger.getLogger(MarkSocket.class);
 
@@ -39,7 +38,6 @@ public class MarkSocket {
         sessions.remove(session);
     }
 
-    //TODO send MarkDTO with promotes and demotes
     @OnWebSocketMessage
     public void message(Session session, String object) throws IOException {
         logger.info("Got: " + object);

@@ -47,7 +47,7 @@ public class UserService {
 
     public List<Category> findAllCategoriesForUser(String email) {
         User user = getUserByEmail(email);
-        return user.getCategories();
+        return user != null ? user.getCategories() : null;
     }
 
     // Adds a user defined category
