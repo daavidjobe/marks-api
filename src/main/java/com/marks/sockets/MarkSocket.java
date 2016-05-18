@@ -22,7 +22,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 @WebSocket(maxTextMessageSize = 90000)
 public class MarkSocket {
-    
+
     private static final Queue<Session> sessions = new ConcurrentLinkedQueue<>();
     final static Logger logger = Logger.getLogger(MarkSocket.class);
 

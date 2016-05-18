@@ -26,6 +26,7 @@ public class Main {
 
         get(Config.ROOT_PATH, (req, res) -> "Marks REST API");
 
+        get(Config.ROOT_PATH + "/port", (req, res) -> Config.PORT);
 
     }
 
